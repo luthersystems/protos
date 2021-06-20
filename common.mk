@@ -1,3 +1,5 @@
+# Copyright © 2021 Luther Systems, Ltd. All right reserved.
+
 PROJECT=protos
 PROJECT_PATH=github.com/luthersystems/${PROJECT}
 
