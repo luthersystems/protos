@@ -1,3 +1,5 @@
+# Copyright © 2021 Luther Systems, Ltd. All right reserved.
+
 include common.mk
 
 DOCKER_PROJECT_DIR:=$(call DOCKER_DIR, .)
