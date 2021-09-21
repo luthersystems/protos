@@ -1,0 +1,38 @@
+// Copyright © 2021 Luther Systems, Ltd. All right reserved.
+
+syntax = "proto3";
+
+package common;
+
+option go_package = "github.com/luthersystems/protos/common";
+option java_multiple_files = true;
+option java_outer_classname = "ExceptionProto";
+option java_package = "com.luthersystems.common";
+
+import "common/exception.proto";
+
+// Get health status of services.
+message GetHealthCheckRequest {
+  // Check only the http service
+  bool http_only = 1;
+}
+
+// Health status of services.
+message GetHealthCheckResponse {
+  // The status of the relevant sub services.
+  repeated HealthCheckReport reports = 1;
+  // An exception if an error occurred during processing request.
+  common.Exception exception = 2;
+}
+
+// Health check status of an individual service.
+message HealthCheckReport {
+  // Timestamp of when the report was generated (RFC3339).
+  string timestamp = 1;
+  // Status of the service.
+  string status = 2;
+  // Name of the service.
+  string service_name = 3;
+  // Version of the service.
+  string service_version = 4;
+}
