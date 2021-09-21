@@ -6,7 +6,6 @@ DOCKER_PROJECT_DIR:=$(call DOCKER_DIR, .)
 
 BUILD_IMAGE=${BUILD_IMAGE_API}
 PROTO_SOURCE_FILES=$(wildcard */*.proto)
-PROTO_MODTIME=$(shell ls -lt */*.proto | head -n 1 | awk '{print $$6 " " $$7 " " $$8};')
 
 BUILD_IMAGE_PROJECT_DIR=/go/src/${PROJECT_PATH}
 BUILD_WORKDIR=${BUILD_IMAGE_PROJECT_DIR}
@@ -25,18 +24,17 @@ clean:
 
 ${ARTIFACTS}: ${PROTO_SOURCE_FILES}
 	@echo "Building api $(notdir $@)"
-	${DOCKER_RUN} \
-		-u ${DOCKER_USER} \
-		-v ${DOCKER_PROJECT_DIR}:${BUILD_IMAGE_PROJECT_DIR} \
-		-v $(call DOCKER_DIR, .)/build.mk:/opt/Dockerfile.api.mk \
-		-e PROJECT_PATH="${PROJECT_PATH}" \
-		-e ARTIFACTS="${ARTIFACTS}" \
-		-e VERSION="${VERSION} (${PROTO_MODTIME})" \
-		-w ${BUILD_WORKDIR} \
-		${BUILD_IMAGE}
-	${CHOWN} ${CHOWN_USR}:${CHOWN_GRP} ${ARTIFACTS}
-	${MKDIR_P} $(dir $@)
-	${TOUCH} $@
+	bazel run :update_all
+
+# updates generated bazel build files, formats and fixes lint issues
+# https://github.com/bazelbuild/bazel-gazelle
+# https://github.com/bazelbuild/buildtools/blob/master/buildifier/README.md
+.PHONY: bazel-fix
+bazel-fix:
+	bazel run //:gazelle -- fix
+	bazel run //:gazelle -- update-repos -from_file=go.mod -to_macro=repositories.bzl%gazelle_go_repositories
+	bazel run //:buildifier
+	bazel run //:buildifier -- --lint=fix
 
 # print out make variables, e.g.:
 # make echo:VERSION
