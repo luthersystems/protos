@@ -1,0 +1,16 @@
+load("@bazel_gazelle//:def.bzl", "gazelle")
+load("//:rules/defs.bzl", "update_generated_code")
+load("@com_github_bazelbuild_buildtools//buildifier:def.bzl", "buildifier")
+
+buildifier(name = "buildifier")
+
+# gazelle:prefix github.com/luthersystems/protos
+gazelle(name = "gazelle")
+
+update_generated_code(
+    name = "update_all",
+    srcs = [
+        "//common",
+        "//pdfserv",
+    ],
+)

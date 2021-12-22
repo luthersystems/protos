@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option go_package = "github.com/luthersystems/protos/pdfserv";
+option java_multiple_files = true;
+option java_outer_classname = "PDFServProto";
+option java_package = "com.luthersystems.pdfserv";
+
+package pdfserv;
+
+import "common/exception.proto";
+
+// Generate a PDF by passing base64 bytes of an html document.
+message GenerateRequest {
+  // The base64 string of the html to render as PDF.
+  string html_base64 = 1;
+}
+
+// Response to PDF generation.
+message GenerateResponse {
+  // An exception if an error occurred during processing request.
+  common.Exception exception = 1;
+  // Base64 encoded PDF generated from the request.
+  string pdf_base64 = 2;
+}
