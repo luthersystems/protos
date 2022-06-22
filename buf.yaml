@@ -1,0 +1,8 @@
+version: v1
+lint:
+  use:
+    - DEFAULT
+  ignore:
+    # TODO: re-enable these
+    - common/
+    - pdfserv/
