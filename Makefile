@@ -10,31 +10,19 @@ PROTO_SOURCE_FILES=$(wildcard */*.proto)
 BUILD_IMAGE_PROJECT_DIR=/go/src/${PROJECT_PATH}
 BUILD_WORKDIR=${BUILD_IMAGE_PROJECT_DIR}
 
-ARTIFACTS=$(patsubst %.proto,%.pb.go,${PROTO_SOURCE_FILES})
+ARTIFACTS=$(patsubst %.proto,%.pb.go,${PROTO_SOURCE_FILES}) $(patsubst %.proto,%_grpc.pb.go,${PROTO_SOURCE_FILES})
 
 .PHONY: default
 default: all
 
 .PHONY: all
-all: ${ARTIFACTS}
+all:
+	@echo "Building api $(notdir $@)"
+	buf generate
 
 .PHONY: clean
 clean:
 	${RM} -f ${ARTIFACTS}
-
-${ARTIFACTS}: ${PROTO_SOURCE_FILES}
-	@echo "Building api $(notdir $@)"
-	bazel run :update_all
-
-# updates generated bazel build files, formats and fixes lint issues
-# https://github.com/bazelbuild/bazel-gazelle
-# https://github.com/bazelbuild/buildtools/blob/master/buildifier/README.md
-.PHONY: bazel-fix
-bazel-fix:
-	bazel run //:gazelle -- fix
-	bazel run //:gazelle -- update-repos -from_file=go.mod -to_macro=repositories.bzl%gazelle_go_repositories
-	bazel run //:buildifier
-	bazel run //:buildifier -- --lint=fix
 
 # print out make variables, e.g.:
 # make echo:VERSION
