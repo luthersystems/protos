@@ -3,6 +3,7 @@ lint:
   use:
     - DEFAULT
   ignore:
-    # TODO: re-enable these
     - common/
-    - pdfserv/
+deps:
+  - buf.build/googleapis/googleapis
+  - buf.build/grpc-ecosystem/grpc-gateway
