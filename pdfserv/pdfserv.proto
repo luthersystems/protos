@@ -1,9 +1,6 @@
 syntax = "proto3";
 
 option go_package = "github.com/luthersystems/protos/pdfserv";
-option java_multiple_files = true;
-option java_outer_classname = "PDFServProto";
-option java_package = "com.luthersystems.pdfserv";
 
 package pdfserv;
 

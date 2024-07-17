@@ -4,6 +4,8 @@ lint:
     - DEFAULT
   ignore:
     - common/
+    - healthcheck/
+    - pdfserv/
 deps:
   - buf.build/googleapis/googleapis
   - buf.build/grpc-ecosystem/grpc-gateway

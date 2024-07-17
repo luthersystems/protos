@@ -2,9 +2,9 @@
 
 syntax = "proto3";
 
-package common;
+package healthcheck;
 
-option go_package = "github.com/luthersystems/protos/common";
+option go_package = "github.com/luthersystems/protos/healthcheck";
 
 import "common/exception.proto";
 
