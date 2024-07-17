@@ -1,0 +1,145 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "pdfserv/service.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "PDF"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "ExceptionType": {
+      "type": "string",
+      "enum": [
+        "INVALID_TYPE",
+        "BUSINESS",
+        "SERVICE_NOT_AVAILABLE",
+        "INFRASTRUCTURE",
+        "UNEXPECTED",
+        "SECURITY_VIOLATION"
+      ],
+      "default": "INVALID_TYPE",
+      "description": "Type of exception.\n\n - INVALID_TYPE: Default for no exception.\n - BUSINESS: Business logic error.\n - SERVICE_NOT_AVAILABLE: A service was unavailable.\n - INFRASTRUCTURE: Infrastructure was down.\n - UNEXPECTED: Catch-all for all other types.\n - SECURITY_VIOLATION: Security related error."
+    },
+    "commonException": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "UUID for exception."
+        },
+        "type": {
+          "$ref": "#/definitions/ExceptionType",
+          "description": "Type of exception."
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "Timestamp for when the exception occurred (RFC3339)."
+        },
+        "description": {
+          "type": "string",
+          "description": "Human readable description of exception."
+        },
+        "exceptionMetadata": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Additional metadata about the exception."
+        }
+      },
+      "description": "General message for exceptions."
+    },
+    "commonGetHealthCheckResponse": {
+      "type": "object",
+      "properties": {
+        "reports": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonHealthCheckReport"
+          },
+          "description": "The status of the relevant sub services."
+        },
+        "exception": {
+          "$ref": "#/definitions/commonException",
+          "description": "An exception if an error occurred during processing request."
+        }
+      },
+      "description": "Health status of services."
+    },
+    "commonHealthCheckReport": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "description": "Timestamp of when the report was generated (RFC3339)."
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the service."
+        },
+        "serviceName": {
+          "type": "string",
+          "description": "Name of the service."
+        },
+        "serviceVersion": {
+          "type": "string",
+          "description": "Version of the service."
+        }
+      },
+      "description": "Health check status of an individual service."
+    },
+    "pdfservGenerateResponse": {
+      "type": "object",
+      "properties": {
+        "exception": {
+          "$ref": "#/definitions/commonException",
+          "description": "An exception if an error occurred during processing request."
+        },
+        "pdfBase64": {
+          "type": "string",
+          "description": "Base64 encoded PDF generated from the request."
+        }
+      },
+      "description": "Response to PDF generation."
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}
