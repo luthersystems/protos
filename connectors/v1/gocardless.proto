@@ -1,0 +1,21 @@
+// Message format for CONNECTOR_TYPE_GOCARDLESS
+// TODO: move into own pkg to not clutter connectors pkg.
+syntax = "proto3";
+
+option go_package = "github.com/luthersystems/protos/connectors";
+
+package connectors.v1;
+
+message GocardlessRequest {
+  string customer_id = 1;  // ID of the customer for the payment
+  string amount = 2;  // Decimal string for amount to be charged
+  string currency = 3;  // Currency of the payment
+  string description = 4;  // Description of the payment
+  map<string, string> metadata = 5;  // Additional metadata
+}
+
+message GocardlessResponse {
+  string status = 1;  // Status of the payment process
+  string payment_id = 2;  // ID of the initiated payment
+  map<string, string> metadata = 3;  // Additional metadata
+}

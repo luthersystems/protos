@@ -1,0 +1,31 @@
+// Message format for CONNECTOR_TYPE_POSTGRES
+// TODO: move into own pkg to not clutter connectors pkg.
+syntax = "proto3";
+
+option go_package = "github.com/luthersystems/protos/connectors";
+
+import "google/protobuf/struct.proto";
+
+package connectors.v1;
+
+message PostgresRow {
+  map<string, google.protobuf.Value> columns = 1;  // Column names and their values
+}
+
+message PostgresError {
+  string error_code = 1;  // PostgreSQL specific error code
+  string error_message = 2;  // Detailed error message
+  map<string, google.protobuf.Value> details = 3;  // Additional error details
+}
+
+message PostgresRequest {
+  string query = 1;  // The SQL query to be executed
+  map<string, google.protobuf.Value> parameters = 2;  // Parameters for parameterized queries
+  map<string, string> metadata = 3;  // Additional metadata
+}
+
+message PostgresResponse {
+  repeated PostgresRow rows = 1;  // The rows returned by the query
+  PostgresError error = 2;  // Postgres specific error message.
+  map<string, string> metadata = 3;  // Additional metadata
+}

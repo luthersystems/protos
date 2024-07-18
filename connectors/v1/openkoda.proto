@@ -1,0 +1,19 @@
+// Message format for CONNECTOR_TYPE_OPENKODA
+// https://github.com/openkoda/openkoda?tab=readme-ov-file#-out-of-the-box-features
+// TODO: move into own pkg to not clutter connectors pkg.
+syntax = "proto3";
+
+option go_package = "github.com/luthersystems/protos/connectors";
+
+package connectors.v1;
+
+message OpenKodaRequest {
+ string invoice_id = 1;   // ID of the invoice to be generated and sent
+  string recipient_email = 2;  // Email address of the invoice recipient
+  map<string, string> metadata = 3;  // Additional metadata
+}
+
+message OpenKodaResponse {
+  string status = 1;  // Status of the email sending process
+  map<string, string> metadata = 2;  // Additional metadata
+}
