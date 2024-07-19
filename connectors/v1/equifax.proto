@@ -1,0 +1,62 @@
+// Message format for CONNECTOR_TYPE_EQUIFAX_ID_VERIFICATION.
+// TODO: move into own pkg to not clutter connectors pkg.
+syntax = "proto3";
+
+option go_package = "github.com/luthersystems/protos/connectors";
+
+import "google/protobuf/wrappers.proto";
+
+package connectors.v1;
+
+message EquifaxIDVerificationRequest {
+  string dob = 1;
+  string middle_name = 2;
+  string surname = 3;
+  string forename = 4;
+  string address_name = 5;
+  string address_number = 6;
+  string address_street1 = 7;
+  string address_street2 = 8;
+  string address_postcode = 9;
+  string address_post_town = 10;
+  string previous_address_name = 11;
+  string previous_address_number = 12;
+  string previous_address_street1 = 13;
+  string previous_address_street2 = 14;
+  string previous_address_postcode = 15;
+  string previous_address_post_town = 16;
+  string nationality = 17;
+}
+
+enum EIDVResult {
+  EIDV_RESULT_UNSPECIFIED = 0;
+  EIDV_RESULT_CLEAR = 1;
+  EIDV_RESULT_CONSIDER = 2;
+  EIDV_RESULT_UNIDENTIFIED = 3;
+  EIDV_RESULT_MATCHES_MORTALITY_LISTS = 4;
+  EIDV_RESULT_CIFAS_MATCH = 5;
+  EIDV_RESULT_PENDING = 6;
+  // Default status.
+  EIDV_RESULT_NOT_REQUESTED = 7;
+  // This status will be used when Equifax returns an error, like a timeout, and we don't have a valid response from Equifax.
+  // It will be used as a workaround, so cases can be unblocked if necessary when Equifax is not working.
+  EIDV_RESULT_SERVICE_UNAVAILABLE = 8;
+  // This status will be used when we're unable to call Equifax because they don't support it, like running eidv with non-UK address.
+  // In those occasions they just return an error and that blocks the case, so we can instead set this result and allow the user to override the result.
+  EIDV_RESULT_UNSUPPORTED = 9;
+}
+
+message EquifaxIDVerificationResponse {
+  // The date when the request was triggered.
+  string eidv_check_requested = 1;
+  // The date when the response was returned from Equifax.
+  string eidv_check_completed = 2;
+  // The result of the eIDV check.
+  EIDVResult eidv_check_status = 3;
+  // Full response from Equifax.
+  google.protobuf.BoolValue eidv_sanction = 4;
+  google.protobuf.BoolValue eidv_pep = 5;
+  google.protobuf.BoolValue eidv_special_interest_person = 6;
+  google.protobuf.BoolValue eidv_close_associate = 7;
+}
+

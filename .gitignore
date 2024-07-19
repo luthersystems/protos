@@ -2,3 +2,4 @@ bin
 build
 
 /bazel-*
+.DS_Store

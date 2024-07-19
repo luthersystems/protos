@@ -1,0 +1,27 @@
+// Message format for CONNECTOR_TYPE_EMAIL
+// TODO: move into own pkg to not clutter connectors pkg.
+syntax = "proto3";
+
+option go_package = "github.com/luthersystems/protos/connectors";
+
+package connectors.v1;
+
+message EmailAttachment {
+  string filename = 1;  // Name of the attachment file
+  bytes content = 2;  // Content of the attachment file
+}
+
+message EmailRequest {
+  string recipient_email = 1;  // Email address of the recipient.
+  repeated string cc_emails = 2;  // Email address of the CC recipients.
+  repeated string bcc_emails = 3;  // Email address of the BCC recipients.
+  string subject = 4;  // Subject of the email
+  string body = 5;  // Body of the email
+  repeated EmailAttachment attachments = 6;  // Optional attachments
+  map<string, string> metadata = 7;  // Additional metadata
+}
+
+message EmailResponse {
+  string status = 1;  // Status of the email sending process
+  map<string, string> metadata = 2;  // Additional metadata
+}

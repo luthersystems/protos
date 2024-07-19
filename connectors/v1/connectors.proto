@@ -1,0 +1,101 @@
+syntax = "proto3";
+
+option go_package = "github.com/luthersystems/protos/connectors";
+
+package connectors.v1;
+
+import "common/exception.proto";
+
+// The platform sends requests to connectors listening on a specific type.
+// Each connector type has its own message format that is unmarshaled by the 
+// connector.
+enum ConnectorType {
+  CONNECTOR_TYPE_UNSPECIFIED = 0;
+  CONNECTOR_TYPE_JSON = 1;
+  CONNECTOR_TYPE_EQUIFAX_ID_VERIFICATION = 2;
+  CONNECTOR_TYPE_CAMUNDA_WORKFLOW = 3;
+  CONNECTOR_TYPE_POSTGRESQL = 4;
+  CONNECTOR_TYPE_OPENKODA = 5;
+  CONNECTOR_TYPE_CAMUNDA_TASKLIST = 6;
+  CONNECTOR_TYPE_EMAIL = 7;
+  CONNECTOR_TYPE_GOCARDLESS = 8;
+}
+
+// RegisterRequest is sent from a connector to the hub, to register the connector.
+message RegisterRequest {
+  string request_id = 1;
+  map<string, string> metadata = 2;
+  ConnectorType type = 3;
+}
+
+// RegisterResponse is a response to a request to register a connector.
+message RegisterResponse {
+  string request_id = 1;
+  common.Exception exception = 2;
+}
+
+// SinkRequest is a request initiated from the platform, to the 
+// connector.
+message SinkRequest {
+  // request ID correlates responses to a request.
+  string request_id = 1;
+  ConnectorType type = 2;
+  map<string, string> metadata = 3;
+  // payload is the request initiated by the platform, and is connector 
+  // specific (by type).
+  bytes payload = 4;
+}
+
+// SinkResponse is a response from the connector, to the platform.
+message SinkResponse {
+  // request ID correlates responses to a request.
+  string request_id = 1;
+  common.Exception exception = 2;
+  // connector may have multiple responses for a single request.
+  int32 response_number = 3;
+  // payload is message to be processed by the platform callback.
+  bytes payload = 4;
+  // optional signature used by the platform to validate the response.
+  string connector_signature = 5;
+}
+
+// SourceRequest is a request initiated from a connector, to the platform.
+message SourceRequest {
+  // request ID correlates responses to a request.
+  string request_id = 1;
+  map<string, string> metadata = 2;
+  // payload is the request initiated by the platform.
+  bytes payload = 3;
+  // optional signature used by the platform to validate the request.
+  string connector_signature = 4;
+}
+
+// SourceResponse is a response from the platform, to the connector.
+message SourceResponse {
+  // request ID correlates responses to a request.
+  string request_id = 1;
+  common.Exception exception = 2;
+  // platform may have multiple responses for a single request.
+  int32 response_number = 3;
+  // payload is message to be processed by the connector callback.
+  bytes payload = 4;
+}
+
+// StreamRequest are messages sent by connectors to the hub.
+message StreamRequest {
+  oneof message {
+    RegisterRequest register_request = 1;
+    SinkResponse sink_response = 2;
+    SourceRequest source_request = 3;
+  }
+}
+
+// StreamResponse are messages sent from the hub to the connectors.
+message StreamResponse {
+  oneof message {
+    RegisterResponse register_response = 1;
+    SinkRequest sink_request = 2;
+    SourceResponse source_response = 3;
+  }
+}
+

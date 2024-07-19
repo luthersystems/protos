@@ -1,0 +1,41 @@
+// Message formats for CONNECTOR_TYPE_CAMUNDA_*.
+// TODO: move into own pkg to not clutter connectors pkg.
+// https://docs.camunda.io/docs/apis-tools/zeebe-api/gateway-service/
+// https://docs.camunda.io/docs/apis-tools/tasklist-api-rest/specifications/tasklist-rest-api/
+
+syntax = "proto3";
+
+option go_package = "github.com/luthersystems/protos/connectors";
+
+import "google/protobuf/struct.proto";
+
+package connectors.v1;
+
+message CamundaException {
+  int32 status = 1;
+}
+
+message CamundaWorkflowRequest {
+  string process_definition_key = 1;  // Key of the workflow to start
+  map<string, google.protobuf.Value> variables = 2;  // Variables for the workflow
+  map<string, string> metadata = 3;  // Additional metadata
+}
+
+message CamundaWorkflowResponse {
+  string process_instance_id = 1;  // ID of the started process instance
+  map<string, google.protobuf.Value> variables = 2;  // Output variables from the workflow
+  map<string, string> metadata = 3;  // Additional metadata
+}
+
+message CamundaTasklistRequest {
+  string task_definition_key = 1;  // Key of the task to create
+  map<string, google.protobuf.Value> variables = 2;  // Variables for the task
+  map<string, string> metadata = 3;  // Additional metadata
+}
+
+message CamundaTasklistResponse {
+  string task_id = 1;  // ID of the created task
+  string task_status = 2;  // Status of the task
+  map<string, google.protobuf.Value> variables = 3;  // Output variables from the task
+  map<string, string> metadata = 4;  // Additional metadata
+}

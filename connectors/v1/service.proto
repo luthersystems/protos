@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option go_package = "github.com/luthersystems/protos/connectors";
+
+package connectors.v1;
+
+import "connectors/v1/connectors.proto";
+
+// ConnectorHubService is used by connector services to receive
+// requests and commands from the platform.
+service ConnnectorHubService {
+  // Stream establishes a connection between the hub and the connector.
+  rpc Stream(stream StreamRequest) returns (stream StreamResponse);
+}
