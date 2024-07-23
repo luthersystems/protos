@@ -4,13 +4,13 @@ option go_package = "github.com/luthersystems/protos/pdfserv";
 
 // The pdfserv package provides an API for interacting with the PDF microservice 
 // that generates PDFs from HTML templates.
-package pdfserv;
+package pdfserv.v1;
 
-import "pdfserv/pdfserv.proto";
+import "pdfserv/v1/pdfserv.proto";
 
 // PDF generation microservice.
 service PDFService {
 	// Generate PDF.
-	rpc Generate(pdfserv.GenerateRequest) returns (pdfserv.GenerateResponse) {
+	rpc Generate(pdfserv.v1.GenerateRequest) returns (pdfserv.v1.GenerateResponse) {
 	}
 }

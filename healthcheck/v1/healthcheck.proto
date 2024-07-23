@@ -4,11 +4,11 @@ syntax = "proto3";
 
 // The healtcheck service provides a standard way for checking the health 
 // of Luther services.
-package healthcheck;
+package healthcheck.v1;
 
 option go_package = "github.com/luthersystems/protos/healthcheck";
 
-import "common/exception.proto";
+import "common/v1/exception.proto";
 
 // Get health status of services.
 message GetHealthCheckRequest {
@@ -21,7 +21,7 @@ message GetHealthCheckResponse {
   // The status of the relevant sub services.
   repeated HealthCheckReport reports = 1;
   // An exception if an error occurred during processing request.
-  common.Exception exception = 2;
+  common.v1.Exception exception = 2;
 }
 
 // Health check status of an individual service.
