@@ -4,6 +4,8 @@ syntax = "proto3";
 // that generates PDFs from HTML templates.
 package pdfserv.v1;
 
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/pdfserv/v1";
+
 import "pdfserv/v1/pdfserv.proto";
 
 // PDF generation microservice.
