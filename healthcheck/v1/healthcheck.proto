@@ -6,6 +6,8 @@ syntax = "proto3";
 // of Luther services.
 package healthcheck.v1;
 
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/healthcheck/v1";
+
 import "common/v1/exception.proto";
 
 // Get health status of services.

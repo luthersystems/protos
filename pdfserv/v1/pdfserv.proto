@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package pdfserv.v1;
 
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/pdfserv/v1";
+
 import "common/v1/exception.proto";
 
 // Generate a PDF by passing base64 bytes of an html document.
