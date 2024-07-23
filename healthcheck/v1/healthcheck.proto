@@ -6,8 +6,6 @@ syntax = "proto3";
 // of Luther services.
 package healthcheck.v1;
 
-option go_package = "github.com/luthersystems/protos/healthcheck";
-
 import "common/v1/exception.proto";
 
 // Get health status of services.
