@@ -6,8 +6,6 @@ syntax = "proto3";
 
 package healthcheck.v1;
 
-option go_package = "github.com/luthersystems/protos/healthcheck";
-
 import "healthcheck/v1/healthcheck.proto";
 
 import "google/api/annotations.proto";

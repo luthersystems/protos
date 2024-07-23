@@ -5,8 +5,6 @@ syntax = "proto3";
 // The common package provides common models used across the Luther stack.
 package common.v1;
 
-option go_package = "github.com/luthersystems/protos/common";
-
 // General message for exceptions.
 message Exception {
   // Type of exception.
