@@ -2,6 +2,7 @@
 
 syntax = "proto3";
 
+// The common package provides common models used across the Luther stack.
 package common;
 
 option go_package = "github.com/luthersystems/protos/common";

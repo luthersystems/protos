@@ -2,6 +2,8 @@
 
 syntax = "proto3";
 
+// The healtcheck service provides a standard way for checking the health 
+// of Luther services.
 package healthcheck;
 
 option go_package = "github.com/luthersystems/protos/healthcheck";
