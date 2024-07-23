@@ -9,6 +9,3 @@ lint:
       - common/v1/exception.proto
     ENUM_ZERO_VALUE_SUFFIX:
       - common/v1/exception.proto
-deps:
-  - buf.build/googleapis/googleapis
-  - buf.build/grpc-ecosystem/grpc-gateway
