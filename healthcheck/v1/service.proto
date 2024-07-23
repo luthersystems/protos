@@ -6,7 +6,7 @@ syntax = "proto3";
 
 package healthcheck.v1;
 
-option go_package = "github.com/luthersystems/protos/healthcheck";
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/healthcheck/v1";
 
 import "healthcheck/v1/healthcheck.proto";
 

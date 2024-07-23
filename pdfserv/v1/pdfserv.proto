@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-option go_package = "github.com/luthersystems/protos/pdfserv";
-
 package pdfserv.v1;
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/pdfserv/v1";
 
 import "common/v1/exception.proto";
 

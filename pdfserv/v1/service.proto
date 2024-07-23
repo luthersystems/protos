@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-option go_package = "github.com/luthersystems/protos/pdfserv";
-
 // The pdfserv package provides an API for interacting with the PDF microservice 
 // that generates PDFs from HTML templates.
 package pdfserv.v1;
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/pdfserv/v1";
 
 import "pdfserv/v1/pdfserv.proto";
 
