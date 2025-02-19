@@ -3,7 +3,7 @@ modules:
   - name: buf.build/luthersystems/protos
 lint:
   use:
-    - DEFAULT
+    - STANDARD
   ignore_only:
     ENUM_VALUE_PREFIX:
       - common/v1/exception.proto
