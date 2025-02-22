@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+message EquifaxConfig {
+  string aml_url = 1;
+  string full_report_url = 2;
+  string secrets_manager_key = 3;
+  string region = 4;
+  string logon_url = 5;
+  string eidv_url = 6;
+}

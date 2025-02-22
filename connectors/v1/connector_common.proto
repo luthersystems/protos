@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+import "connectors/v1/camunda.proto";
+import "connectors/v1/email.proto";
+import "connectors/v1/equifax.proto";
+import "connectors/v1/gocardless.proto";
+import "connectors/v1/invoice_ninja.proto";
+import "connectors/v1/pdfserv.proto";
+import "connectors/v1/postgres.proto";
+import "connectors/v1/stripe.proto";
+import "common/v1/exception.proto";
+
+message ConnectorConfig {
+  oneof config {
+    CamundaInspectConfig camunda_inspect = 1;
+    CamundaStartConfig camunda_start = 2;
+    EmailConfig email = 3;
+    EquifaxConfig equifax = 4;
+    GoCardlessConfig gocardless = 5;
+    InvoiceNinjaConfig invoice_ninja = 6;
+    PDFServConfig pdfserv = 7;
+    PostgresConfig postgres = 8;
+    StripeConfig stripe = 9;
+  }
+}
+
+// Request message for testing a connector's connection settings
+message TestConnectionRequest {
+  ConnectorConfig connector = 1;
+}
+
+// Response message for connection testing
+message TestConnectionResponse {
+  oneof result {
+    common.v1.Exception exception = 1; // 🔹 Exception details if an error occurred
+    ConnectionSuccess success = 2;     // 🔹 Successful test result
+  }
+}
+
+// Success message if connection test is successful
+message ConnectionSuccess {
+  string message = 1;  // e.g., "Connection successful"
+}

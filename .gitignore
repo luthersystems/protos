@@ -3,3 +3,6 @@ build
 
 /bazel-*
 .DS_Store
+
+# Ignore all generated protobuf Go files
+*.pb.go
