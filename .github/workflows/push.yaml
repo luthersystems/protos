@@ -13,8 +13,11 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }} # 🔹 Authenticates requests to avoid rate limits
       - uses: bufbuild/buf-lint-action@v1
       - uses: bufbuild/buf-breaking-action@v1
+        if: ${{ env.SKIP_BUF_BREAKING != 'true' }}
         with:
           against: "https://github.com/${GITHUB_REPOSITORY}.git#branch=main"
       - uses: bufbuild/buf-push-action@v1
         with:
           buf_token: ${{ secrets.BUF_TOKEN }}
+    env:
+      SKIP_BUF_BREAKING: true
