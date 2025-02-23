@@ -14,17 +14,35 @@ import "connectors/v1/postgres.proto";
 import "connectors/v1/stripe.proto";
 import "common/v1/exception.proto";
 
+// Enum for different connector types.
+enum Kind {
+  KIND_UNSPECIFIED = 0;
+  KIND_CAMUNDA_INSPECT = 1;
+  KIND_CAMUNDA_START = 2;
+  KIND_EMAIL = 3;
+  KIND_EQUIFAX = 4;
+  KIND_GOCARDLESS = 5;
+  KIND_INVOICE_NINJA = 6;
+  KIND_PDFSERV = 7;
+  KIND_POSTGRES = 8;
+  KIND_STRIPE = 9;
+}
+
+// ConnectorConfig is used to create connections to systems.
 message ConnectorConfig {
+  Kind kind = 1;
+  string name = 2;
+  bool mock = 3;
   oneof config {
-    CamundaInspectConfig camunda_inspect = 1;
-    CamundaStartConfig camunda_start = 2;
-    EmailConfig email = 3;
-    EquifaxConfig equifax = 4;
-    GoCardlessConfig gocardless = 5;
-    InvoiceNinjaConfig invoice_ninja = 6;
-    PDFServConfig pdfserv = 7;
-    PostgresConfig postgres = 8;
-    StripeConfig stripe = 9;
+    CamundaInspectConfig camunda_inspect = 5;
+    CamundaStartConfig camunda_start = 6;
+    EmailConfig email = 7;
+    EquifaxConfig equifax = 8;
+    GoCardlessConfig gocardless = 9;
+    InvoiceNinjaConfig invoice_ninja = 10;
+    PDFServConfig pdfserv = 11;
+    PostgresConfig postgres = 12;
+    StripeConfig stripe = 13;
   }
 }
 
