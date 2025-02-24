@@ -2,8 +2,10 @@ syntax = "proto3";
 
 package connectors.v1;
 
+import "annotations/v1/sensitive.proto";
+
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
 message StripeConfig {
-  string secret = 1;
+  string secret = 1 [(annotations.v1.sensitive) = true];
 }

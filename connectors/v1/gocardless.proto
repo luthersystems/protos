@@ -2,10 +2,12 @@ syntax = "proto3";
 
 package connectors.v1;
 
+import "annotations/v1/sensitive.proto";
+
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
 message GoCardlessConfig {
   string access_token = 1;
   string base_url = 2;
-  string webhook_secret = 3; // Secret used to validate incoming webhooks from GoCardless
+  string webhook_secret = 3 [(annotations.v1.sensitive) = true]; // Secret used to validate incoming webhooks from GoCardless
 }

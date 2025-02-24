@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package connectors.v1;
 
+import "annotations/v1/sensitive.proto";
+
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
 message EmailConfig {
@@ -9,6 +11,6 @@ message EmailConfig {
   string from_address = 2;
   int32 port = 3;
   string username = 4;
-  string password = 5;
+  string password = 5 [(annotations.v1.sensitive) = true];
   bool use_tls = 6; // Whether to use TLS for secure communication
 }
