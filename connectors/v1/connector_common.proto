@@ -30,6 +30,7 @@ enum Kind {
 
 // ConnectorConfig is used to create connections to systems.
 message ConnectorConfig {
+  string msp = 1;
   string name = 2;
   bool mock = 3;
   oneof config {
