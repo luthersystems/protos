@@ -2,18 +2,20 @@ syntax = "proto3";
 
 package connectors.v1;
 
+import "annotations/v1/sensitive.proto";
+
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
 message CamundaInspectConfig {
   string operate_url = 1;
   string username = 2;
-  string password = 3;
-  string api_token = 4; // Optional, if using token-based auth instead of username/password
+  string password = 3 [(annotations.v1.sensitive) = true];
+  string api_token = 4 [(annotations.v1.sensitive) = true]; // Optional, if using token-based auth instead of username/password
 }
 
 message CamundaStartConfig {
   string gateway_url = 1;
   string username = 2;
-  string password = 3;
-  string api_token = 4; // Optional, if using token-based auth instead of username/password
+  string password = 3 [(annotations.v1.sensitive) = true];
+  string api_token = 4 [(annotations.v1.sensitive) = true]; // Optional, if using token-based auth instead of username/password
 }

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package annotations.v1;
+
+import "google/protobuf/descriptor.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1/annotations";
+
+extend google.protobuf.FieldOptions {
+  bool sensitive = 50000;
+}
