@@ -13,4 +13,5 @@ message EmailConfig {
   string username = 4;
   string password = 5 [(annotations.v1.sensitive) = true];
   bool use_tls = 6; // Whether to use TLS for secure communication
+  string aws_region = 7; // set this to use AWS SES using the connectorhub IAM role. When set, only from_address is required.
 }
