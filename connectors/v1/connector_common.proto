@@ -4,6 +4,8 @@ package connectors.v1;
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+import "common/v1/exception.proto";
+
 import "connectors/v1/camunda.proto";
 import "connectors/v1/email.proto";
 import "connectors/v1/equifax.proto";
@@ -12,7 +14,7 @@ import "connectors/v1/invoice_ninja.proto";
 import "connectors/v1/pdfserv.proto";
 import "connectors/v1/postgres.proto";
 import "connectors/v1/stripe.proto";
-import "common/v1/exception.proto";
+import "connectors/v1/sftp.proto";
 
 // Enum for different connector types.
 enum Kind {
@@ -26,6 +28,7 @@ enum Kind {
   KIND_PDFSERV = 7;
   KIND_POSTGRES = 8;
   KIND_STRIPE = 9;
+  KIND_SFTP = 10;
 }
 
 // ConnectorConfig is used to create connections to systems.
@@ -42,7 +45,8 @@ message ConnectorConfig {
     InvoiceNinjaConfig invoice_ninja = 10;
     PDFServConfig pdfserv = 11;
     PostgresConfig postgres = 12;
-    StripeConfig stripe = 13;
+    StripeConfig stripe = 13; 
+    SFTPConfig sftp = 14;
   }
 }
 
