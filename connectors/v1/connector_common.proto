@@ -20,6 +20,7 @@ import "connectors/v1/slack.proto";
 import "connectors/v1/twilio.proto";
 import "connectors/v1/oracledb.proto";
 import "connectors/v1/mysql.proto";
+import "connectors/v1/kafka.proto";
 
 // Enum for different connector types.
 enum Kind {
@@ -39,6 +40,7 @@ enum Kind {
   KIND_TWILIO = 13;
   KIND_ORACLEDB = 14;
   KIND_MYSQL = 15;
+  KIND_KAFKA = 16;
 }
 
 // ConnectorConfig is used to create connections to systems.
@@ -62,6 +64,7 @@ message ConnectorConfig {
     TwilioConfig twilio = 17;
     OracleDBConfig oracledb = 18;
     MySQLConfig mysql = 19;
+    KafkaConfig kafka = 20;
   }
 }
 
