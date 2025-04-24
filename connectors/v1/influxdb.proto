@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+message InfluxDBConfig {
+  string base_url = 1;                                         // Base URL of InfluxDB server
+  string organization = 2;                                     // InfluxDB organization name
+  string bucket_name = 3;                                      // Bucket name
+  string token = 4 [(annotations.v1.sensitive) = true];        // Auth token
+  int32 query_timeout = 5;                                     // Query timeout in seconds
+}

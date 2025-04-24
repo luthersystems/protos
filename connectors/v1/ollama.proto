@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+message OllamaConfig {
+  string api_key = 1 [(annotations.v1.sensitive) = true];
+  string model_name = 2;
+  string region = 3;
+  string output_format = 4;
+  int32 request_timeout = 5;
+}

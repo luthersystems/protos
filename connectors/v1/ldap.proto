@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+message LDAPConfig {
+  string server_address = 1;                                   // LDAP server address
+  int32 server_port = 2;                                       // Port (e.g., 389)
+  string binding_dn = 3;                                       // Distinguished Name for bind
+  string binding_password = 4 [(annotations.v1.sensitive) = true]; // Password for binding
+  string connection_security = 5;                              // None, StartTLS, SSL
+  int32 timeout = 6;                                           // Timeout in seconds
+}

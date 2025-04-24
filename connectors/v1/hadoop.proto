@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+message HadoopConfig {
+  string namenode_host = 1;           // Hostname or IP of the Hadoop Namenode
+  int32 namenode_port = 2;            // Port number (default is 8020)
+  string hdfs_path = 3;               // Default HDFS path
+  string authentication_type = 4;     // "none" or "Kerberos"
+  string kerberos_principal = 5;      // Optional: Kerberos principal
+  string keytab_file = 6;             // Optional: path to keytab file
+  bool use_ssl = 7;                   // Whether to use SSL
+}

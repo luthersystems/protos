@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+message WorkdayConfig {
+  string tenant_name = 1;                                      // e.g., mycompany_tenant
+  string host_url = 2;                                         // e.g., https://wd5-services.workday.com
+  string api_username = 3;
+  string api_password = 4 [(annotations.v1.sensitive) = true];
+  string web_service_endpoint = 5;                             // e.g., Human_Resources/v35.0
+}

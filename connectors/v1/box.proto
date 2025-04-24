@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+message BoxConfig {
+  string client_id = 1;                                        // Client ID from Box Developer Console
+  string client_secret = 2 [(annotations.v1.sensitive) = true]; // Client Secret
+  string public_key_id = 3;                                    // ID of JWT public key
+  string private_key = 4 [(annotations.v1.sensitive) = true];  // Private key for JWT auth
+  string passphrase = 5 [(annotations.v1.sensitive) = true];   // Optional: passphrase
+  string enterprise_id = 6;                                    // Enterprise ID
+}

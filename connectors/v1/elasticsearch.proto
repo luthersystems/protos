@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+// Configuration for connecting to an Elasticsearch server
+message ElasticsearchConfig {
+  string host = 1;                                      // Hostname or IP of the Elasticsearch server
+  int32 port = 2;                                       // Port number, default is 9200
+  string username = 3;                                  // Optional: username for authentication
+  string password = 4 [(annotations.v1.sensitive) = true]; // Optional: password for authentication
+  bool use_tls = 5;                                     // Whether to use TLS for secure communication
+  string tls_cert = 6;                                  // Optional: path to TLS certificate
+  string default_index = 7;                             // Default index for queries or writes
+}

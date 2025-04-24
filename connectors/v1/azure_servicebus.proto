@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+// Configuration for connecting to Azure Service Bus
+message AzureServiceBusConfig {
+  string namespace = 1;                                      // Azure Service Bus namespace (e.g., "my-servicebus")
+  string queue_name = 2;                                     // Name of the queue to send/receive messages
+  string topic_name = 3;                                     // Optional: topic name for publishing
+  string subscription = 4;                                   // Optional: subscription name for topic subscribers
+  string access_key = 5;                                     // Access key for authentication
+  string access_secret = 6 [(annotations.v1.sensitive) = true]; // Secret associated with the access key
+  bool use_tls = 7;                                          // Whether TLS should be enabled
+}

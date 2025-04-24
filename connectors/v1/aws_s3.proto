@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+message AWSS3Config {
+  string region = 1;                                           // AWS region
+  string bucket_name = 2;                                      // S3 bucket name
+  string role_arn = 3;                                         // IAM Role ARN to assume
+  string access_key_id = 4 [(annotations.v1.sensitive) = true]; // Optional: access key ID
+  string secret_access_key = 5 [(annotations.v1.sensitive) = true]; // Optional: secret access key
+  string s3_endpoint = 6;                                      // Optional: S3 endpoint URL
+  bool use_tls = 7;                                            // Whether to use TLS
+  int32 timeout = 8;                                           // Timeout in seconds
+}

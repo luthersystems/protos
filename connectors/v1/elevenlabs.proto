@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+message ElevenLabsConfig {
+  string api_key = 1 [(annotations.v1.sensitive) = true];      // API Key from ElevenLabs dashboard
+  string base_url = 2;                                         // Base API URL (e.g., https://api.elevenlabs.io)
+  string region = 3;                                           // Region (e.g., us-west-1)
+  string voice_id = 4;                                         // Optional: Specific Voice ID
+  string output_format = 5;                                    // Audio format (e.g., mp3, wav, ogg)
+  string text_prompt_language = 6;                             // Language of the text prompt (e.g., English, French)
+}

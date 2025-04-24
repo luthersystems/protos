@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+// Configuration for connecting to a Kafka cluster
+message KafkaConfig {
+  string brokers = 1;                                     // Comma-separated list of Kafka broker addresses
+  string topic = 2;                                       // Kafka topic for publishing/consuming
+  string consumer_group = 3;                              // Optional: Kafka consumer group ID
+  string username = 4;                                    // Optional: SASL username
+  string password = 5 [(annotations.v1.sensitive) = true]; // Optional: SASL password
+  bool use_tls = 6;                                       // Enable TLS for communication
+  string tls_cert = 7;                                    // Optional: TLS client certificate
+  string tls_key = 8 [(annotations.v1.sensitive) = true]; // Optional: TLS client key
+  string tls_ca_cert = 9;                                 // Optional: CA certificate for server validation
+}

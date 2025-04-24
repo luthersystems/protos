@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+message GoogleChatConfig {
+  string service_account = 1;
+  string private_key = 2 [(annotations.v1.sensitive) = true];
+  string space_id = 3;
+}

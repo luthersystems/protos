@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+message RedisConfig {
+  string host = 1;                                             // Redis server host
+  int32 port = 2;                                              // Redis port (default 6379)
+  string password = 3 [(annotations.v1.sensitive) = true];     // Optional password
+  int32 database_number = 4;                                   // Optional DB index (default 0)
+  bool ssl_setting = 5;                                        // Use TLS/SSL
+}

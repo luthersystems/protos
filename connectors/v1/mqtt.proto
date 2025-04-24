@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+message MQTTConfig {
+  string protocol = 1;                                         // Protocol: mqtt, mqtts, ws
+  string host = 2;                                             // Broker hostname
+  int32 port = 3;                                              // Broker port (e.g., 1883)
+  string username = 4;                                         // Optional username
+  string password = 5 [(annotations.v1.sensitive) = true];     // Optional password
+  string client_id = 6;                                        // Optional client ID
+  bool clean_session = 7;                                      // Clean session (true/false)
+  bool use_ssl = 8;                                            // Use SSL
+}

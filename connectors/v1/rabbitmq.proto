@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+// Configuration for connecting to a RabbitMQ server
+message RabbitMQConfig {
+  string host = 1;                                      // Hostname or IP of the RabbitMQ server
+  int32 port = 2;                                       // Port number, default is 5672
+  string username = 3;                                  // Username for authentication
+  string password = 4 [(annotations.v1.sensitive) = true]; // Password for authentication
+  string virtual_host = 5;                              // Optional: virtual host to use
+  string queue_name = 6;                                // Name of the queue to consume from or publish to
+  string exchange_name = 7;                             // Optional: exchange name for publishing
+  string routing_key = 8;                               // Optional: routing key for binding
+  bool use_tls = 9;                                     // Enable TLS for secure communication
+}

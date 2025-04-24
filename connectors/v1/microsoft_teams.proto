@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+message MicrosoftTeamsConfig {
+  string tenant_id = 1;                                        // Azure AD Tenant ID
+  string client_id = 2;                                        // Application (client) ID
+  string client_secret = 3;                                    // Client secret
+  string api_scope = 4;                                        // Microsoft Graph API scope
+}

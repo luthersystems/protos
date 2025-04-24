@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+message AWSDynamoDBConfig {
+  string region = 1;                                           // AWS region
+  string role_arn = 2;                                         // IAM Role ARN to assume
+  string access_key_id = 3 [(annotations.v1.sensitive) = true]; // Optional: access key ID
+  string secret_access_key = 4 [(annotations.v1.sensitive) = true]; // Optional: secret access key
+  string endpoint = 5;                                         // DynamoDB endpoint URL
+  string tls_setting = 6;                                      // TLS setting (true/false)
+  int32 timeout = 7;                                           // Timeout in seconds
+}

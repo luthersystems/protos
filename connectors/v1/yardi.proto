@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+message YardiConfig {
+  string base_url = 1;                                         // API base URL
+  string api_version = 2;                                      // API version (e.g., v1)
+  string client_id = 3;                                        // API client ID
+  string client_secret = 4 [(annotations.v1.sensitive) = true]; // API client secret
+  int32 request_timeout = 5;                                   // Optional: request timeout in seconds
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+message UiPathConfig {
+  string base_url = 1;                                         // Orchestrator base URL
+  string api_version = 2;                                      // API version (e.g., v2021.10)
+  string tenant_name = 3;                                      // Orchestrator tenant name
+  string client_id = 4;                                        // OAuth2 client ID
+  string client_secret = 5 [(annotations.v1.sensitive) = true]; // OAuth2 client secret
+}

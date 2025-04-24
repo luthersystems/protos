@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+message Auth0Config {
+  string domain = 1;                                           // Auth0 domain (e.g., myapp.auth0.com)
+  string app_client_id = 2;                                    // Auth0 Client ID
+  string app_client_secret = 3 [(annotations.v1.sensitive) = true]; // Optional: Client secret
+  string redirect_url = 4;                                     // Redirect URL
+  string oauth_scopes = 5;                                     // OAuth scopes
+  string cookie_prefix = 6;                                    // Cookie prefix
+  bool secure_cookies = 7;                                     // Use secure cookies
+}
