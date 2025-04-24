@@ -6,7 +6,8 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Interfaces with Anthropic's Claude AI models, providing AI-driven text analysis, summarization, and conversational AI.
 message AnthropicClaudeConfig {
-  string api_key = 1 [(annotations.v1.sensitive) = true];
-  string base_url = 2;
+  string api_key = 1 [(annotations.v1.sensitive) = true];      // Anthropic API key for authenticating requests
+  string base_url = 2;                                         // Optional: custom base URL for the Claude API
 }

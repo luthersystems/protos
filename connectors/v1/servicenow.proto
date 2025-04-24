@@ -6,8 +6,9 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Interfaces with ServiceNow for IT service management (ITSM), workflow automation, and enterprise service management.
 message ServiceNowConfig {
-  string instance_url = 1;              // e.g., https://yourinstance.service-now.com
-  string username = 2;
-  string password = 3 [(annotations.v1.sensitive) = true];
+  string instance_url = 1;                                     // URL of your ServiceNow instance (e.g., https://yourinstance.service-now.com)
+  string username = 2;                                         // Username for authenticating with the ServiceNow API
+  string password = 3 [(annotations.v1.sensitive) = true];     // Password for authentication
 }

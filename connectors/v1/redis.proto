@@ -6,10 +6,11 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Integrates with Redis for high-performance caching, session storage, and real-time data processing.
 message RedisConfig {
-  string host = 1;                                             // Redis server host
-  int32 port = 2;                                              // Redis port (default 6379)
-  string password = 3 [(annotations.v1.sensitive) = true];     // Optional password
-  int32 database_number = 4;                                   // Optional DB index (default 0)
-  bool ssl_setting = 5;                                        // Use TLS/SSL
+  string host = 1;                                             // Hostname or IP address of the Redis server
+  int32 port = 2;                                              // Redis port (default: 6379)
+  string password = 3 [(annotations.v1.sensitive) = true];     // Optional password for authentication
+  int32 database_number = 4;                                   // Optional database number (default is 0)
+  bool ssl_setting = 5;                                        // Whether to use TLS/SSL for secure communication
 }

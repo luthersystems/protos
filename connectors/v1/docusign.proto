@@ -6,11 +6,12 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Interfaces with DocuSign for electronic signatures, contract management, and document workflows.
 message DocuSignConfig {
-  string token_endpoint = 1;                                   // OAuth2 token endpoint
+  string token_endpoint = 1;                                   // OAuth2 token endpoint for DocuSign authentication
   string client_id = 2;                                        // OAuth2 client ID
   string client_secret = 3 [(annotations.v1.sensitive) = true]; // OAuth2 client secret
   string grant_type = 4;                                       // OAuth2 grant type (e.g., client_credentials)
-  string scopes = 5;                                           // Scopes required for operations
-  string base_url = 6;                                         // DocuSign API base URL
+  string scopes = 5;                                           // Scopes required for DocuSign API operations
+  string base_url = 6;                                         // DocuSign API base URL (e.g., https://demo.docusign.net/restapi)
 }

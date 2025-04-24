@@ -4,8 +4,9 @@ package connectors.v1;
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Interfaces with the UK's Office for National Statistics (ONS) for accessing economic, demographic, and business data.
 message ONSConfig {
-  string dataset_id = 1;                                      // Dataset ID (e.g., cpi01)
-  string response_format = 2;                                 // Response format: json, csv, or xlsx
-  int32 timeout = 3;                                          // Timeout in seconds
+  string dataset_id = 1;                                      // Dataset ID to query (e.g., cpi01)
+  string response_format = 2;                                 // Desired response format: json, csv, or xlsx
+  int32 timeout = 3;                                          // Request timeout in seconds
 }

@@ -6,11 +6,12 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Connects to Box for cloud-based file storage, sharing, and document collaboration.
 message BoxConfig {
-  string client_id = 1;                                        // Client ID from Box Developer Console
-  string client_secret = 2 [(annotations.v1.sensitive) = true]; // Client Secret
-  string public_key_id = 3;                                    // ID of JWT public key
-  string private_key = 4 [(annotations.v1.sensitive) = true];  // Private key for JWT auth
-  string passphrase = 5 [(annotations.v1.sensitive) = true];   // Optional: passphrase
-  string enterprise_id = 6;                                    // Enterprise ID
+  string client_id = 1;                                        // Client ID from the Box Developer Console
+  string client_secret = 2 [(annotations.v1.sensitive) = true]; // Client secret used for authentication
+  string public_key_id = 3;                                    // ID of the public key used for JWT-based auth
+  string private_key = 4 [(annotations.v1.sensitive) = true];  // Private key used to sign JWTs
+  string passphrase = 5 [(annotations.v1.sensitive) = true];   // Optional: passphrase for decrypting the private key
+  string enterprise_id = 6;                                    // Box enterprise ID used for service account authentication
 }

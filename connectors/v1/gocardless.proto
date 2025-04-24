@@ -6,8 +6,9 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Configuration for connecting to the GoCardless API
 message GoCardlessConfig {
-  string access_token = 1;
-  string base_url = 2;
-  string webhook_secret = 3 [(annotations.v1.sensitive) = true]; // Secret used to validate incoming webhooks from GoCardless
+  string access_token = 1;                                     // Access token for authenticating with the GoCardless API
+  string base_url = 2;                                         // Base URL for GoCardless (e.g., https://api.gocardless.com)
+  string webhook_secret = 3 [(annotations.v1.sensitive) = true]; // Secret for validating incoming webhooks from GoCardless
 }

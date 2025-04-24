@@ -6,9 +6,10 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Connects to Hugging Face's Inference API, allowing access to pre-trained AI models for NLP, computer vision, and more.
 message HuggingFaceInferenceConfig {
-  string api_key = 1 [(annotations.v1.sensitive) = true];
-  string model_id = 2;
-  string api_endpoint = 3;
-  int32 request_timeout = 4;
+  string api_key = 1 [(annotations.v1.sensitive) = true];      // API key for authenticating with the Hugging Face Inference API
+  string model_id = 2;                                         // ID of the model to use (e.g., bert-base-uncased)
+  string api_endpoint = 3;                                     // Optional: custom API endpoint (defaults to https://api-inference.huggingface.co)
+  int32 request_timeout = 4;                                   // Timeout for API requests, in seconds
 }

@@ -6,8 +6,9 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Configuration for connecting to the Celonis process mining API
 message CelonisConfig {
-  string base_url = 1;                                         // Celonis API base URL
-  string api_token = 2 [(annotations.v1.sensitive) = true];    // API token for authentication
-  bool use_tls = 3;                                            // Whether to use TLS
+  string base_url = 1;                                         // Celonis API base URL (e.g., https://<tenant>.celonis.cloud)
+  string api_token = 2 [(annotations.v1.sensitive) = true];    // API token used for authenticating requests
+  bool use_tls = 3;                                            // Whether to use TLS for secure communication
 }

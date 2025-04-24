@@ -6,6 +6,7 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Integrates with Notion for managing documents, notes, databases, and collaborative workflows.
 message NotionConfig {
-  string integration_token = 1 [(annotations.v1.sensitive) = true]; // Internal Integration Token
+  string integration_token = 1 [(annotations.v1.sensitive) = true]; // Internal integration token for authenticating API requests
 }

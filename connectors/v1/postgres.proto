@@ -6,6 +6,7 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Configuration for connecting to a PostgreSQL database
 message PostgresConfig {
-  string connection = 1 [(annotations.v1.sensitive) = true];
+  string connection = 1 [(annotations.v1.sensitive) = true];   // PostgreSQL connection string (e.g., postgres://user:pass@host:5432/dbname)
 }

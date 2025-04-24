@@ -6,9 +6,10 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Configuration for connecting to the Onfido identity verification API
 message OnfidoConfig {
-  string base_url = 1;                                         // Onfido API base URL
-  string api_token = 2 [(annotations.v1.sensitive) = true];    // API token for authentication
-  string region = 3;                                           // Region (e.g., US, EU)
-  bool use_tls = 4;                                            // Whether to use TLS
+  string base_url = 1;                                         // Onfido API base URL (e.g., https://api.onfido.com/v3)
+  string api_token = 2 [(annotations.v1.sensitive) = true];    // API token for authenticating requests
+  string region = 3;                                           // Deployment region (e.g., US, EU)
+  bool use_tls = 4;                                            // Whether to use TLS for secure API communication
 }
