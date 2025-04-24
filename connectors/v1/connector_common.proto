@@ -22,6 +22,7 @@ import "connectors/v1/oracledb.proto";
 import "connectors/v1/mysql.proto";
 import "connectors/v1/kafka.proto";
 import "connectors/v1/azureservicebus.proto";
+import "connectors/v1/elasticsearch.proto";
 
 // Enum for different connector types.
 enum Kind {
@@ -43,6 +44,7 @@ enum Kind {
   KIND_MYSQL = 15;
   KIND_KAFKA = 16;
   KIND_AZURE_SERVICE_BUS = 17;
+  KIND_ELASTICSEARCH = 18;
 }
 
 // ConnectorConfig is used to create connections to systems.
@@ -68,6 +70,7 @@ message ConnectorConfig {
     MySQLConfig mysql = 19;
     KafkaConfig kafka = 20;
     AzureServiceBusConfig azure_service_bus = 21;
+    ElasticsearchConfig elasticsearch = 22;
   }
 }
 
