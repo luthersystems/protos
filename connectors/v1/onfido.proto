@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+message OnfidoConfig {
+  string base_url = 1;                                         // Onfido API base URL
+  string api_token = 2 [(annotations.v1.sensitive) = true];    // API token for authentication
+  string region = 3;                                           // Region (e.g., US, EU)
+  bool use_tls = 4;                                            // Whether to use TLS
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+message ServiceNowConfig {
+  string instance_url = 1;              // e.g., https://yourinstance.service-now.com
+  string username = 2;
+  string password = 3 [(annotations.v1.sensitive) = true];
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+message AWSSQSConfig {
+  string queue_url = 1;                                       // Full SQS queue URL
+  string role_arn = 2;                                        // Optional IAM role to assume
+  string access_key_id = 3 [(annotations.v1.sensitive) = true];  // Optional access key ID
+  string secret_access_key = 4 [(annotations.v1.sensitive) = true]; // Optional secret access key
+  bool use_tls = 5;                                           // Use TLS
+  int32 timeout = 6;                                          // Request timeout in seconds
+}

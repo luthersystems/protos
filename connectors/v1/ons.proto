@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+message ONSConfig {
+  string dataset_id = 1;                                      // Dataset ID (e.g., cpi01)
+  string response_format = 2;                                 // Response format: json, csv, or xlsx
+  int32 timeout = 3;                                          // Timeout in seconds
+}

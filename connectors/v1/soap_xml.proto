@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+message SOAPXMLConfig {
+  string wsdl_url = 1;                                         // URL to the WSDL document
+  string authentication_type = 2;                              // Basic, Token, or WS-Security
+  string username = 3;                                         // Username for Basic/WS-Security
+  string password = 4 [(annotations.v1.sensitive) = true];     // Password for Basic/WS-Security
+  string token = 5 [(annotations.v1.sensitive) = true];        // Optional: token for bearer auth
+  bool use_tls = 6;                                            // Enable TLS
+  int32 timeout = 7;                                           // Timeout in seconds
+}

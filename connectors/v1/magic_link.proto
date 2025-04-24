@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+message MagicLinkConfig {
+  string kms_key_arn = 1;                                     // AWS KMS key ARN
+  string role_arn = 2;                                        // Optional IAM role ARN
+  string access_key_id = 3 [(annotations.v1.sensitive) = true];  // Optional access key ID
+  string secret_access_key = 4 [(annotations.v1.sensitive) = true]; // Optional secret access key
+  string from_address = 5;                                    // From address for email
+  string email_template = 6;                                  // Email template for magic link
+  string login_url = 7;                                       // Login redirect URL
+  int32 expiration_minutes = 8;                               // Validity period of link in minutes
+  bool secure_cookies = 9;                                    // Whether cookies should be secure
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+message GoogleGeminiConfig {
+  string api_key = 1 [(annotations.v1.sensitive) = true];
+  string base_url = 2;
+  string host_url = 3;
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+message WeaviateConfig {
+  string base_url = 1;
+  string api_key = 2 [(annotations.v1.sensitive) = true];
+}

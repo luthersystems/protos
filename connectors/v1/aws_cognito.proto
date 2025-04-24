@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+message AWSCognitoConfig {
+  string region = 1;                                           // AWS region
+  string user_pool_id = 2;                                     // Cognito User Pool ID
+  string app_client_id = 3;                                    // Cognito App Client ID
+  string app_client_secret = 4 [(annotations.v1.sensitive) = true]; // Optional: App Client Secret
+  string redirect_url = 5;                                     // Redirect URL after login
+  string oauth_scopes = 6;                                     // OAuth scopes (e.g., openid profile email)
+  string cookie_prefix = 7;                                    // Prefix for cookies
+  bool secure_cookies = 8;                                     // Use secure cookies
+}

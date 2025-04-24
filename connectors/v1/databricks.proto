@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+message DatabricksConfig {
+  string api_token = 1 [(annotations.v1.sensitive) = true];    // Personal access token
+  string host_url = 2;                                         // Databricks host URL
+}

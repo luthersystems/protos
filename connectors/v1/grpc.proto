@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+message GRPCConfig {
+  string host = 1;                                             // gRPC server hostname
+  int32 port = 2;                                              // gRPC server port (default: 50051)
+  bool use_tls = 3;                                            // Use TLS for secure communication
+  string authentication_type = 4;                              // Token, MTLS, None
+  string api_token = 5 [(annotations.v1.sensitive) = true];    // Optional: token for authentication
+  string certificate = 6;                                      // Optional: TLS certificate
+  int32 timeout = 7;                                           // Optional: timeout in seconds
+}

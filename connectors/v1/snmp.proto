@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+message SNMPConfig {
+  string host = 1;                                             // SNMP device IP or hostname
+  int32 port = 2;                                              // SNMP port, typically 161
+  string community_string = 3;                                 // Community string for SNMP v1/v2c
+  string snmp_version = 4;                                     // SNMP version (e.g., 1, 2c, 3)
+  string oids = 5;                                             // Object Identifiers to query/set
+  string authentication_protocol = 6;                          // Optional: Auth protocol for SNMP v3 (e.g., MD5, SHA)
+  string privacy_protocol = 7;                                 // Optional: Privacy protocol for SNMP v3 (e.g., AES, DES)
+  string username = 8;                                         // Optional: SNMP v3 username
+  string password = 9 [(annotations.v1.sensitive) = true];     // Optional: SNMP v3 password
+  bool enable_debug = 10;                                      // Enable debug logging
+}
