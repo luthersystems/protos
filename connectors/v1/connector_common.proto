@@ -16,6 +16,7 @@ import "connectors/v1/postgres.proto";
 import "connectors/v1/stripe.proto";
 import "connectors/v1/sftp.proto";
 import "connectors/v1/mongodb.proto";
+import "connectors/v1/slack.proto";
 
 // Enum for different connector types.
 enum Kind {
@@ -31,6 +32,7 @@ enum Kind {
   KIND_STRIPE = 9;
   KIND_SFTP = 10;
   KIND_MONGODB = 11;
+  KIND_SLACK = 12;
 }
 
 // ConnectorConfig is used to create connections to systems.
@@ -50,6 +52,7 @@ message ConnectorConfig {
     StripeConfig stripe = 13; 
     SFTPConfig sftp = 14; 
     MongoDBConfig mongodb = 15;
+    SlackConfig slack = 16;
   }
 }
 
