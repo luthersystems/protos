@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+// Configuration for sending messages using Twilio
+message TwilioConfig {
+  string account_sid = 1;                                        // Twilio Account SID
+  string auth_token = 2 [(annotations.v1.sensitive) = true];     // Twilio Auth Token (sensitive)
+  string default_phone_number = 3;                               // Optional default sender phone number
+}
