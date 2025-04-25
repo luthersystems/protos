@@ -3,10 +3,18 @@ syntax = "proto3";
 package connectors.v1;
 
 import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
-// Configuration for connecting to the Stripe API
+// Connects to Stripe for payment processing, subscriptions, and financial transaction management.
 message StripeConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "Stripe"
+      description: "Connects to Stripe for payment processing, subscriptions, and financial transaction management.\n@category: Business Apps"
+    }
+  };
+
   string secret = 1 [(annotations.v1.sensitive) = true];       // Stripe secret key for authenticating API requests
 }

@@ -3,11 +3,19 @@ syntax = "proto3";
 package connectors.v1;
 
 import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
 // Configuration for connecting to a MongoDB server
 message MongoDBConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "MongoDB"
+      description: "Connects to MongoDB for NoSQL database operations, document storage, and flexible schema management.\n@category: Data & ETL"
+    }
+  };
+
   string host = 1;                                      // Hostname or IP of the MongoDB server
   int32 port = 2;                                       // Port number, default is 27017
   string database = 3;                                  // Name of the MongoDB database

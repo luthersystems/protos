@@ -3,11 +3,19 @@ syntax = "proto3";
 package connectors.v1;
 
 import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
 // Connects to Ollama for running and managing open-source AI models locally, enabling custom AI-powered applications.
 message OllamaConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "Ollama"
+      description: "Connects to Ollama for running and managing open-source AI models locally, enabling custom AI-powered applications.\n@category: AI"
+    }
+  };
+
   string api_key = 1 [(annotations.v1.sensitive) = true];      // API key for authenticating with the Ollama service
   string model_name = 2;                                       // Name of the model to use (e.g., llama2, mistral)
   string region = 3;                                           // Optional: deployment region

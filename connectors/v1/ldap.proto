@@ -3,11 +3,19 @@ syntax = "proto3";
 package connectors.v1;
 
 import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
 // Integrates with LDAP (Lightweight Directory Access Protocol) for centralized authentication and user directory management.
 message LDAPConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "LDAP"
+      description: "Integrates with LDAP (Lightweight Directory Access Protocol) for centralized authentication and user directory management.\n@category: Auth"
+    }
+  };
+
   string server_address = 1;                                   // Address of the LDAP server
   int32 server_port = 2;                                       // Port to connect to (default: 389)
   string binding_dn = 3;                                       // Distinguished Name (DN) used for LDAP bind operations

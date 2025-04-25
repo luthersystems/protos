@@ -3,11 +3,19 @@ syntax = "proto3";
 package connectors.v1;
 
 import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
 // Integrates with Microsoft Dynamics for customer relationship management (CRM) and enterprise resource planning (ERP).
 message MicrosoftDynamicsConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "Microsoft Dynamics"
+      description: "Integrates with Microsoft Dynamics for customer relationship management (CRM) and enterprise resource planning (ERP).\n@category: Business Apps"
+    }
+  };
+
   string endpoint = 1;                                         // Endpoint URL for the Microsoft Dynamics API
   string client_id = 2;                                        // Application (client) ID registered in Azure
   string client_secret = 3 [(annotations.v1.sensitive) = true]; // Client secret for authentication

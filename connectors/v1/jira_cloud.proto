@@ -3,11 +3,19 @@ syntax = "proto3";
 package connectors.v1;
 
 import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
 // Integrates with JIRA Cloud for issue tracking, agile project management, and workflow automation.
 message JiraCloudConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "JIRA Cloud"
+      description: "Integrates with JIRA Cloud for issue tracking, agile project management, and workflow automation.\n@category: Workplace Apps"
+    }
+  };
+
   string email = 1;                                            // Email address associated with the Atlassian account
   string api_token = 2 [(annotations.v1.sensitive) = true];    // API token for authenticating JIRA API requests
   string domain = 3;                                           // JIRA Cloud domain (e.g., yourcompany.atlassian.net)

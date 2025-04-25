@@ -3,11 +3,19 @@ syntax = "proto3";
 package connectors.v1;
 
 import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
 // Interfaces with Auth0 for authentication, single sign-on (SSO), and identity management.
 message Auth0Config {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "Auth0"
+      description: "Interfaces with Auth0 for authentication, single sign-on (SSO), and identity management.\n@category: Workplace Apps"
+    }
+  };
+
   string domain = 1;                                           // Auth0 domain (e.g., myapp.auth0.com)
   string app_client_id = 2;                                    // Client ID registered in the Auth0 application
   string app_client_secret = 3 [(annotations.v1.sensitive) = true]; // Optional: client secret for Auth0 OAuth flows

@@ -3,11 +3,19 @@ syntax = "proto3";
 package connectors.v1;
 
 import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
 // Interfaces with Amazon S3 for object storage, backup, and large-scale data archiving.
 message AWSS3Config {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "AWS S3"
+      description: "Interfaces with Amazon S3 for object storage, backup, and large-scale data archiving.\n@category: Data & ETL"
+    }
+  };
+
   string region = 1;                                           // AWS region where the S3 bucket is located (e.g., us-west-1)
   string bucket_name = 2;                                      // Name of the S3 bucket
   string role_arn = 3;                                         // IAM Role ARN to assume for access

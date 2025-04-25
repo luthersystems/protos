@@ -3,11 +3,19 @@ syntax = "proto3";
 package connectors.v1;
 
 import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
 // Connects to Yardi for property management, accounting, and real estate operations.
 message YardiConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "Yardi"
+      description: "Connects to Yardi for property management, accounting, and real estate operations.\n@category: Business Apps"
+    }
+  };
+
   string base_url = 1;                                         // Base URL for the Yardi API
   string api_version = 2;                                      // API version to use (e.g., v1)
   string client_id = 3;                                        // Client ID for authentication

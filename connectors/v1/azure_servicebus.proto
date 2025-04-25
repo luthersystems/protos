@@ -3,11 +3,19 @@ syntax = "proto3";
 package connectors.v1;
 
 import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
 // Configuration for connecting to Azure Service Bus
 message AzureServiceBusConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "Azure Service Bus"
+      description: "Interfaces with Azure Service Bus for reliable cloud messaging and asynchronous communication.\n@category: Events & Messaging"
+    }
+  };
+
   string namespace = 1;                                      // Azure Service Bus namespace (e.g., "my-servicebus")
   string queue_name = 2;                                     // Name of the queue to send/receive messages
   string topic_name = 3;                                     // Optional: topic name for publishing

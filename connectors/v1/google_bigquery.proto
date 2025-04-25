@@ -3,11 +3,19 @@ syntax = "proto3";
 package connectors.v1;
 
 import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
 // Interfaces with Google BigQuery for serverless, scalable data analytics and querying.
 message GoogleBigQueryConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "Google BigQuery"
+      description: "Interfaces with Google BigQuery for serverless, scalable data analytics and querying.\n@category: Data & ETL"
+    }
+  };
+
   string project_id = 1;                                       // Google Cloud project ID
   string dataset_name = 2;                                     // BigQuery dataset name
   string table_name = 3;                                       // BigQuery table name

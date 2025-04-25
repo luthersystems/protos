@@ -3,11 +3,19 @@ syntax = "proto3";
 package connectors.v1;
 
 import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
 // Connects to Google Sheets for data storage, collaboration, and real-time spreadsheet processing.
 message GoogleSheetsConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "Google Sheets"
+      description: "Connects to Google Sheets for data storage, collaboration, and real-time spreadsheet processing.\n@category: Workplace Apps"
+    }
+  };
+
   string service_account = 1;                                  // Google service account email used for authentication
   string private_key = 2 [(annotations.v1.sensitive) = true];  // Private key associated with the service account
   string spreadsheet_id = 3;                                   // ID of the target spreadsheet to read from or write to

@@ -3,11 +3,19 @@ syntax = "proto3";
 package connectors.v1;
 
 import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
 // Configuration for connecting to a RabbitMQ server
 message RabbitMQConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "RabbitMQ"
+      description: "Connects to RabbitMQ for message brokering, queuing, and distributed event-driven architecture.\n@category: Events & Messaging"
+    }
+  };
+
   string host = 1;                                      // Hostname or IP of the RabbitMQ server
   int32 port = 2;                                       // Port number, default is 5672
   string username = 3;                                  // Username for authentication
