@@ -6,12 +6,13 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Provides connectivity for RESTful APIs using JSON for lightweight, scalable data exchange.
 message RESTJSONConfig {
-  string base_url = 1;                                         // Base URL for requests
-  string authentication_type = 2;                              // Basic, Bearer Token, X-API-Key, None
-  bool use_tls = 3;                                            // Use TLS for secure communication
-  int32 timeout = 4;                                           // Request timeout in seconds
-  string username = 5;                                         // Optional: username for Basic Auth
-  string password = 6 [(annotations.v1.sensitive) = true];     // Optional: password for Basic Auth
-  string token = 7 [(annotations.v1.sensitive) = true];        // Optional: token for auth
+  string base_url = 1;                                         // Base URL for the REST API (e.g., https://api.example.com)
+  string authentication_type = 2;                              // Authentication type: Basic, Bearer Token, X-API-Key, or None
+  bool use_tls = 3;                                            // Whether to use TLS for secure communication
+  int32 timeout = 4;                                           // Request timeout duration in seconds
+  string username = 5;                                         // Optional: username for Basic authentication
+  string password = 6 [(annotations.v1.sensitive) = true];     // Optional: password for Basic authentication
+  string token = 7 [(annotations.v1.sensitive) = true];        // Optional: bearer or API token for authentication
 }

@@ -64,8 +64,8 @@ import "connectors/v1/influxdb.proto";
 import "connectors/v1/ldap.proto";
 import "connectors/v1/microsoft_teams.proto";
 import "connectors/v1/okta.proto";
-import "connectors/v1/excel365.proto";
-import "connectors/v1/bigquery.proto";
+import "connectors/v1/microsoft_excel365.proto";
+import "connectors/v1/google_bigquery.proto";
 import "connectors/v1/microsoft_dynamics.proto";
 import "connectors/v1/jira_cloud.proto";
 import "connectors/v1/google_chat.proto";
@@ -262,7 +262,7 @@ message ConnectorConfig {
 
 // Request message for testing a connector's connection settings
 message TestConnectionRequest {
-  ConnectorConfig connector = 1;
+  ConnectorConfig connector = 1; // Connector settings to test.
 }
 
 // Response message for connection testing

@@ -6,7 +6,8 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Connects to Weaviate, an open-source vector search engine for AI-powered semantic search and knowledge graph applications.
 message WeaviateConfig {
-  string base_url = 1;
-  string api_key = 2 [(annotations.v1.sensitive) = true];
+  string base_url = 1;                                         // Base URL of the Weaviate instance (e.g., https://your-instance.weaviate.network)
+  string api_key = 2 [(annotations.v1.sensitive) = true];      // API key used for authenticating API requests
 }

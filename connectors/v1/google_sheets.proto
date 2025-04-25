@@ -6,8 +6,9 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Connects to Google Sheets for data storage, collaboration, and real-time spreadsheet processing.
 message GoogleSheetsConfig {
-  string service_account = 1;                                  // Service account email
-  string private_key = 2 [(annotations.v1.sensitive) = true];  // Private key
-  string spreadsheet_id = 3;                                   // Target spreadsheet ID
+  string service_account = 1;                                  // Google service account email used for authentication
+  string private_key = 2 [(annotations.v1.sensitive) = true];  // Private key associated with the service account
+  string spreadsheet_id = 3;                                   // ID of the target spreadsheet to read from or write to
 }

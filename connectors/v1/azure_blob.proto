@@ -6,10 +6,11 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Configuration for connecting to Azure Blob Storage
 message AzureBlobConfig {
   string account_name = 1;                                      // Azure Storage Account name
   string account_key = 2 [(annotations.v1.sensitive) = true];   // Storage account access key
   string container_name = 3;                                    // Blob container name
-  string endpoint = 4;                                          // Optional custom endpoint
-  bool use_tls = 5;                                             // Whether to use TLS
+  string endpoint = 4;                                          // Optional custom endpoint (e.g., for Azure China or Gov)
+  bool use_tls = 5;                                             // Whether to use TLS for secure communication
 }

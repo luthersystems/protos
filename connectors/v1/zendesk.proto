@@ -6,8 +6,9 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Connects to Zendesk for customer support, ticketing, and help desk automation.
 message ZendeskConfig {
-  string base_url = 1;
-  string api_token = 2 [(annotations.v1.sensitive) = true];
-  string username = 3;
+  string base_url = 1;                                         // Base URL of the Zendesk instance (e.g., https://yourcompany.zendesk.com)
+  string api_token = 2 [(annotations.v1.sensitive) = true];    // API token for authenticating API requests
+  string username = 3;                                         // Username associated with the Zendesk account
 }

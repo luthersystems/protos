@@ -6,6 +6,7 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Integrates with PagerDuty for incident management, on-call alerting, and automated response handling.
 message PagerDutyConfig {
-  string api_token = 1 [(annotations.v1.sensitive) = true];    // PagerDuty API token
+  string api_token = 1 [(annotations.v1.sensitive) = true];    // PagerDuty API token for authenticating requests
 }

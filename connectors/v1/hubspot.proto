@@ -6,7 +6,8 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Interfaces with HubSpot for CRM, marketing automation, and sales pipeline management.
 message HubSpotConfig {
-  string base_url = 1;                                       // e.g., https://api.hubapi.com
-  string private_app_access_token = 2 [(annotations.v1.sensitive) = true];  // HubSpot Private App Token
+  string base_url = 1;                                         // Base URL for the HubSpot API (e.g., https://api.hubapi.com)
+  string private_app_access_token = 2 [(annotations.v1.sensitive) = true]; // Private App access token for authenticating requests
 }

@@ -6,11 +6,12 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Connects to Twenty7Tec for mortgage and financial services data, including product sourcing and affordability assessments.
 message Twenty7TecConfig {
-  string base_url = 1;                                         // API base URL
-  string api_version = 2;                                      // API version (e.g., v1)
-  string license_key = 3 [(annotations.v1.sensitive) = true];  // API license key
-  string company_id = 4;                                       // Company ID
-  string site_id = 5;                                          // Site ID
-  int32 request_timeout = 6;                                   // Optional: request timeout in seconds
+  string base_url = 1;                                         // Base URL for the Twenty7Tec API
+  string api_version = 2;                                      // API version to use (e.g., v1)
+  string license_key = 3 [(annotations.v1.sensitive) = true];  // API license key for authentication
+  string company_id = 4;                                       // Company ID associated with the account
+  string site_id = 5;                                          // Site ID associated with the request
+  int32 request_timeout = 6;                                   // Optional: timeout for API requests, in seconds
 }

@@ -6,6 +6,7 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Configuration for connecting to the Stripe API
 message StripeConfig {
-  string secret = 1 [(annotations.v1.sensitive) = true];
+  string secret = 1 [(annotations.v1.sensitive) = true];       // Stripe secret key for authenticating API requests
 }

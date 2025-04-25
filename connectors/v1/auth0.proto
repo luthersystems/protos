@@ -6,12 +6,13 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Interfaces with Auth0 for authentication, single sign-on (SSO), and identity management.
 message Auth0Config {
   string domain = 1;                                           // Auth0 domain (e.g., myapp.auth0.com)
-  string app_client_id = 2;                                    // Auth0 Client ID
-  string app_client_secret = 3 [(annotations.v1.sensitive) = true]; // Optional: Client secret
-  string redirect_url = 4;                                     // Redirect URL
-  string oauth_scopes = 5;                                     // OAuth scopes
-  string cookie_prefix = 6;                                    // Cookie prefix
-  bool secure_cookies = 7;                                     // Use secure cookies
+  string app_client_id = 2;                                    // Client ID registered in the Auth0 application
+  string app_client_secret = 3 [(annotations.v1.sensitive) = true]; // Optional: client secret for Auth0 OAuth flows
+  string redirect_url = 4;                                     // Redirect URL after authentication
+  string oauth_scopes = 5;                                     // OAuth2 scopes to request (e.g., openid profile email)
+  string cookie_prefix = 6;                                    // Prefix for setting browser cookies
+  bool secure_cookies = 7;                                     // Whether cookies should be marked as secure (HTTPS only)
 }
