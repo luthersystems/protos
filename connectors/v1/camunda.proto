@@ -7,6 +7,7 @@ import "annotations/v1/sensitive.proto";
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
 // Configuration for connecting to Camunda Operate for process inspection
+// @category: Workflow & Automation
 message CamundaInspectConfig {
   string operate_url = 1;                                      // Base URL for Camunda Operate API (e.g., https://camunda.local/operate)
   string username = 2;                                         // Username for basic authentication
@@ -15,6 +16,7 @@ message CamundaInspectConfig {
 }
 
 // Configuration for connecting to Camunda Gateway for starting processes
+// @category: Workflow & Automation
 message CamundaStartConfig {
   string gateway_url = 1;                                      // Base URL for Camunda Gateway API (e.g., https://camunda.local/gateway)
   string username = 2;                                         // Username for basic authentication
