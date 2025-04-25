@@ -2,10 +2,19 @@ syntax = "proto3";
 
 package connectors.v1;
 
+import "protoc-gen-openapiv2/options/annotations.proto";
+
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
 // Configuration for connecting to a Hadoop HDFS cluster
 message HadoopConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "Hadoop"
+      description: "Integrates with Hadoop for distributed big data processing and storage.\n@category: Data & ETL"
+    }
+  };
+
   string namenode_host = 1;           // Hostname or IP address of the Hadoop Namenode
   int32 namenode_port = 2;            // Namenode port (default: 8020)
   string hdfs_path = 3;               // Base HDFS path to operate on (e.g., /data/files)

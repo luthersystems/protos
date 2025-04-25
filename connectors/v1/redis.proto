@@ -3,11 +3,19 @@ syntax = "proto3";
 package connectors.v1;
 
 import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
 // Integrates with Redis for high-performance caching, session storage, and real-time data processing.
 message RedisConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "Redis"
+      description: "Integrates with Redis for high-performance caching, session storage, and real-time data processing.\n@category: Data & ETL"
+    }
+  };
+
   string host = 1;                                             // Hostname or IP address of the Redis server
   int32 port = 2;                                              // Redis port (default: 6379)
   string password = 3 [(annotations.v1.sensitive) = true];     // Optional password for authentication

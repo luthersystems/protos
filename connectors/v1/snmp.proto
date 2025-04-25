@@ -3,11 +3,19 @@ syntax = "proto3";
 package connectors.v1;
 
 import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
 // Enables Simple Network Management Protocol (SNMP) for network monitoring and device management.
 message SNMPConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "SNMP"
+      description: "Enables Simple Network Management Protocol (SNMP) for network monitoring and device management.\n@category: Data & ETL"
+    }
+  };
+
   string host = 1;                                             // SNMP device IP address or hostname
   int32 port = 2;                                              // SNMP port (default is 161)
   string community_string = 3;                                 // Community string used for SNMP v1/v2c access

@@ -3,11 +3,19 @@ syntax = "proto3";
 package connectors.v1;
 
 import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
 // Configuration for connecting to an ActiveMQ server
 message ActiveMQConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "ActiveMQ"
+      description: "Interfaces with Apache ActiveMQ for enterprise message brokering and asynchronous communication.\n@category: Events & Messaging"
+    }
+  };
+
   string host = 1;                                      // Hostname or IP of the ActiveMQ server
   int32 port = 2;                                       // Port number, default is 61616
   string username = 3;                                  // Username for authentication

@@ -3,11 +3,19 @@ syntax = "proto3";
 package connectors.v1;
 
 import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
 // Connects to Azure Active Directory B2C for customer identity and access management (CIAM).
 message AzureB2CConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "Azure B2C"
+      description: "Connects to Azure Active Directory B2C for customer identity and access management (CIAM).\n@category: Workplace Apps"
+    }
+  };
+
   string tenant_name = 1;                                      // Azure B2C tenant name (e.g., contoso.onmicrosoft.com)
   string azure_region = 2;                                     // Azure region where the B2C directory is hosted
   string policy_name = 3;                                      // B2C user flow or policy name (e.g., B2C_1A_signup_signin)

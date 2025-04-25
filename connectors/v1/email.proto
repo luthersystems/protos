@@ -3,11 +3,19 @@ syntax = "proto3";
 package connectors.v1;
 
 import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
-// Configuration for sending email via SMTP or AWS SES
+// Enables sending and receiving emails through standard email protocols (SMTP, IMAP) or third-party email services.
 message EmailConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "Email"
+      description: "Enables sending and receiving emails through standard email protocols (SMTP) or Cloud email services (AWS).\n@category: Business Apps"
+    }
+  };
+
   string smtp_server = 1;                                      // SMTP server hostname (e.g., smtp.sendgrid.net)
   string from_address = 2;                                     // Sender email address (e.g., no-reply@example.com)
   int32 port = 3;                                              // SMTP port (e.g., 587 for TLS, 465 for SSL)

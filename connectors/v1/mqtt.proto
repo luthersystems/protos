@@ -3,11 +3,19 @@ syntax = "proto3";
 package connectors.v1;
 
 import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
 // Enables MQTT (Message Queuing Telemetry Transport) for lightweight IoT and real-time messaging.
 message MQTTConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "MQTT"
+      description: "Enables MQTT (Message Queuing Telemetry Transport) for lightweight IoT and real-time messaging.\n@category: Events & Messaging"
+    }
+  };
+
   string protocol = 1;                                         // Protocol to use: mqtt, mqtts, or ws
   string host = 2;                                             // MQTT broker hostname or IP address
   int32 port = 3;                                              // Port on which the broker is listening (e.g., 1883 for mqtt, 8883 for mqtts)

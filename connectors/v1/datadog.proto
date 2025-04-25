@@ -3,11 +3,19 @@ syntax = "proto3";
 package connectors.v1;
 
 import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
 // Integrates with Datadog for observability, application performance monitoring, and log management.
 message DatadogConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "Datadog"
+      description: "Integrates with Datadog for observability, application performance monitoring, and log management.\n@category: Data & ETL"
+    }
+  };
+
   string base_url = 1;                                         // Base URL for the Datadog API (e.g., https://api.datadoghq.com)
   string api_key = 2 [(annotations.v1.sensitive) = true];      // Datadog API key for authenticating requests
   string app_key = 3 [(annotations.v1.sensitive) = true];      // Datadog application key for scoped access

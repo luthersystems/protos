@@ -3,11 +3,19 @@ syntax = "proto3";
 package connectors.v1;
 
 import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
 // Configuration for connecting to Azure Blob Storage
 message AzureBlobConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "Azure Blob"
+      description: "Connects to Azure Blob Storage for scalable cloud storage and data management.\n@category: Data & ETL"
+    }
+  };
+
   string account_name = 1;                                      // Azure Storage Account name
   string account_key = 2 [(annotations.v1.sensitive) = true];   // Storage account access key
   string container_name = 3;                                    // Blob container name

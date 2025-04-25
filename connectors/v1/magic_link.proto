@@ -3,11 +3,19 @@ syntax = "proto3";
 package connectors.v1;
 
 import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
 // Provides authentication via magic links, allowing passwordless login for secure user access.
 message MagicLinkConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "Magic Link"
+      description: "Provides authentication via magic links, allowing passwordless login for secure user access.\n@category: Workplace Apps"
+    }
+  };
+
   string kms_key_arn = 1;                                     // AWS KMS key ARN used to sign and encrypt tokens
   string role_arn = 2;                                        // Optional: IAM Role ARN to assume for accessing KMS or sending email
   string access_key_id = 3 [(annotations.v1.sensitive) = true];  // Optional: AWS access key ID
