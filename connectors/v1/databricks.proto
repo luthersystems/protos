@@ -6,7 +6,8 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Connects to Databricks for AI-driven analytics, big data processing, and machine learning.
 message DatabricksConfig {
-  string api_token = 1 [(annotations.v1.sensitive) = true];    // Personal access token
-  string host_url = 2;                                         // Databricks host URL
+  string api_token = 1 [(annotations.v1.sensitive) = true];    // Personal access token for authenticating API requests
+  string host_url = 2;                                         // Host URL of the Databricks workspace (e.g., https://<region>.azuredatabricks.net)
 }

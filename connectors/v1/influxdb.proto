@@ -6,10 +6,11 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Connects to InfluxDB for time-series data storage, analytics, and real-time monitoring.
 message InfluxDBConfig {
-  string base_url = 1;                                         // Base URL of InfluxDB server
+  string base_url = 1;                                         // Base URL of the InfluxDB server (e.g., https://us-west-2-1.aws.cloud2.influxdata.com)
   string organization = 2;                                     // InfluxDB organization name
-  string bucket_name = 3;                                      // Bucket name
-  string token = 4 [(annotations.v1.sensitive) = true];        // Auth token
-  int32 query_timeout = 5;                                     // Query timeout in seconds
+  string bucket_name = 3;                                      // Name of the target bucket for storing data
+  string token = 4 [(annotations.v1.sensitive) = true];        // Authentication token for accessing the InfluxDB API
+  int32 query_timeout = 5;                                     // Timeout for queries, in seconds
 }

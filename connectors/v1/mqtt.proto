@@ -6,13 +6,14 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Enables MQTT (Message Queuing Telemetry Transport) for lightweight IoT and real-time messaging.
 message MQTTConfig {
-  string protocol = 1;                                         // Protocol: mqtt, mqtts, ws
-  string host = 2;                                             // Broker hostname
-  int32 port = 3;                                              // Broker port (e.g., 1883)
-  string username = 4;                                         // Optional username
-  string password = 5 [(annotations.v1.sensitive) = true];     // Optional password
-  string client_id = 6;                                        // Optional client ID
-  bool clean_session = 7;                                      // Clean session (true/false)
-  bool use_ssl = 8;                                            // Use SSL
+  string protocol = 1;                                         // Protocol to use: mqtt, mqtts, or ws
+  string host = 2;                                             // MQTT broker hostname or IP address
+  int32 port = 3;                                              // Port on which the broker is listening (e.g., 1883 for mqtt, 8883 for mqtts)
+  string username = 4;                                         // Optional username for authentication
+  string password = 5 [(annotations.v1.sensitive) = true];     // Optional password for authentication
+  string client_id = 6;                                        // Optional client ID to identify the MQTT client
+  bool clean_session = 7;                                      // Whether to establish a clean session (true/false)
+  bool use_ssl = 8;                                            // Whether to use SSL/TLS for secure communication
 }

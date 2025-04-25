@@ -6,13 +6,14 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Interfaces with Amazon S3 for object storage, backup, and large-scale data archiving.
 message AWSS3Config {
-  string region = 1;                                           // AWS region
-  string bucket_name = 2;                                      // S3 bucket name
-  string role_arn = 3;                                         // IAM Role ARN to assume
-  string access_key_id = 4 [(annotations.v1.sensitive) = true]; // Optional: access key ID
-  string secret_access_key = 5 [(annotations.v1.sensitive) = true]; // Optional: secret access key
-  string s3_endpoint = 6;                                      // Optional: S3 endpoint URL
-  bool use_tls = 7;                                            // Whether to use TLS
-  int32 timeout = 8;                                           // Timeout in seconds
+  string region = 1;                                           // AWS region where the S3 bucket is located (e.g., us-west-1)
+  string bucket_name = 2;                                      // Name of the S3 bucket
+  string role_arn = 3;                                         // IAM Role ARN to assume for access
+  string access_key_id = 4 [(annotations.v1.sensitive) = true]; // Optional: AWS access key ID
+  string secret_access_key = 5 [(annotations.v1.sensitive) = true]; // Optional: AWS secret access key
+  string s3_endpoint = 6;                                      // Optional: custom S3 endpoint (e.g., for localstack or private S3-compatible services)
+  bool use_tls = 7;                                            // Whether to use TLS for secure communication
+  int32 timeout = 8;                                           // Timeout for S3 operations, in seconds
 }

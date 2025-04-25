@@ -6,8 +6,9 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Connects to Google's Gemini AI, enabling multimodal AI processing, including text, image, and code generation.
 message GoogleGeminiConfig {
-  string api_key = 1 [(annotations.v1.sensitive) = true];
-  string base_url = 2;
-  string host_url = 3;
+  string api_key = 1 [(annotations.v1.sensitive) = true];      // API key for authenticating with the Gemini API
+  string base_url = 2;                                         // Base URL for Gemini API access
+  string host_url = 3;                                         // Optional: host URL for routing requests
 }

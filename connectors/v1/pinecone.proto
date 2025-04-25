@@ -6,10 +6,11 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Provides integration with Pinecone, a vector database optimized for high-performance AI-powered similarity search.
 message PineconeConfig {
-  string api_key = 1 [(annotations.v1.sensitive) = true];
-  string environment = 2;
-  string index_name = 3;
-  string namespace = 4;
-  int32 request_timeout = 5;
+  string api_key = 1 [(annotations.v1.sensitive) = true];      // Pinecone API key for authenticating requests
+  string environment = 2;                                      // Pinecone environment (e.g., us-west1-gcp)
+  string index_name = 3;                                       // Name of the vector index to use
+  string namespace = 4;                                        // Optional namespace for organizing vectors
+  int32 request_timeout = 5;                                   // Timeout for API requests, in seconds
 }

@@ -6,10 +6,11 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Interfaces with Perplexity AI, a research-driven AI assistant that provides contextual and sourced responses to queries.
 message PerplexityConfig {
-  string api_key = 1 [(annotations.v1.sensitive) = true];
-  string query_endpoint = 2;
-  string default_search = 3;
-  int32 request_timeout = 4;
-  bool include_sources = 5;
+  string api_key = 1 [(annotations.v1.sensitive) = true];      // API key for authenticating with the Perplexity API
+  string query_endpoint = 2;                                   // Endpoint for sending queries to Perplexity
+  string default_search = 3;                                   // Default search type (e.g., web, academic)
+  int32 request_timeout = 4;                                   // Timeout for query requests, in seconds
+  bool include_sources = 5;                                    // Whether to include sources in the AI's response
 }

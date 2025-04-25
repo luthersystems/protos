@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+
+// Interfaces with Google BigQuery for serverless, scalable data analytics and querying.
+message GoogleBigQueryConfig {
+  string project_id = 1;                                       // Google Cloud project ID
+  string dataset_name = 2;                                     // BigQuery dataset name
+  string table_name = 3;                                       // BigQuery table name
+  string service_account = 4;                                  // Service account email for authentication
+  string private_key = 5 [(annotations.v1.sensitive) = true];  // Private key for the service account
+  int32 query_timeout = 6;                                     // Timeout for queries, in seconds
+}

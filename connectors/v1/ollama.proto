@@ -6,10 +6,11 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Connects to Ollama for running and managing open-source AI models locally, enabling custom AI-powered applications.
 message OllamaConfig {
-  string api_key = 1 [(annotations.v1.sensitive) = true];
-  string model_name = 2;
-  string region = 3;
-  string output_format = 4;
-  int32 request_timeout = 5;
+  string api_key = 1 [(annotations.v1.sensitive) = true];      // API key for authenticating with the Ollama service
+  string model_name = 2;                                       // Name of the model to use (e.g., llama2, mistral)
+  string region = 3;                                           // Optional: deployment region
+  string output_format = 4;                                    // Output format for responses (e.g., text, json)
+  int32 request_timeout = 5;                                   // Timeout for API requests, in seconds
 }

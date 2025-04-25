@@ -6,7 +6,8 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Configuration for connecting to the Invoice Ninja API
 message InvoiceNinjaConfig {
-  string api_key = 1 [(annotations.v1.sensitive) = true];
-  string base_url = 2;
+  string api_key = 1 [(annotations.v1.sensitive) = true];      // API key used for authenticating with the Invoice Ninja API
+  string base_url = 2;                                         // Base URL of the Invoice Ninja instance (e.g., https://app.invoiceninja.com)
 }

@@ -6,12 +6,13 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Enables integration with systems using SOAP-based web services and XML data formats for structured communication.
 message SOAPXMLConfig {
-  string wsdl_url = 1;                                         // URL to the WSDL document
-  string authentication_type = 2;                              // Basic, Token, or WS-Security
-  string username = 3;                                         // Username for Basic/WS-Security
-  string password = 4 [(annotations.v1.sensitive) = true];     // Password for Basic/WS-Security
-  string token = 5 [(annotations.v1.sensitive) = true];        // Optional: token for bearer auth
-  bool use_tls = 6;                                            // Enable TLS
-  int32 timeout = 7;                                           // Timeout in seconds
+  string wsdl_url = 1;                                         // URL to the WSDL document describing the SOAP service
+  string authentication_type = 2;                              // Authentication type: Basic, Token, or WS-Security
+  string username = 3;                                         // Username for Basic or WS-Security authentication
+  string password = 4 [(annotations.v1.sensitive) = true];     // Password for Basic or WS-Security authentication
+  string token = 5 [(annotations.v1.sensitive) = true];        // Optional: token for bearer token authentication
+  bool use_tls = 6;                                            // Whether to use TLS for secure communication
+  int32 timeout = 7;                                           // Timeout for SOAP requests, in seconds
 }

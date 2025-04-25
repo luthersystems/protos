@@ -6,6 +6,7 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Connects to Discord for sending messages, notifications, and bot interactions via webhooks.
 message DiscordConfig {
-  string bot_token = 1 [(annotations.v1.sensitive) = true];    // Discord Bot Token
+  string bot_token = 1 [(annotations.v1.sensitive) = true];    // Discord bot token used for authentication and message delivery
 }

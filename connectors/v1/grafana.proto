@@ -6,7 +6,8 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Interfaces with Grafana for real-time monitoring, visualization, and dashboarding of metrics.
 message GrafanaConfig {
-  string api_key = 1 [(annotations.v1.sensitive) = true];      // Grafana API key
-  string base_url = 2;                                         // Base URL of Grafana server
+  string api_key = 1 [(annotations.v1.sensitive) = true];      // API key used to authenticate with Grafana
+  string base_url = 2;                                         // Base URL of the Grafana server (e.g., https://grafana.example.com)
 }

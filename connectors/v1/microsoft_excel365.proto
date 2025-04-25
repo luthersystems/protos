@@ -4,10 +4,9 @@ package connectors.v1;
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
-// Interfaces with Microsoft Teams for messaging, collaboration, and workflow automation.
-message MicrosoftTeamsConfig {
+// Connects to Microsoft Excel 365 for spreadsheet management, data analysis, and automation.
+message MicrosoftExcel365Config {
   string tenant_id = 1;                                        // Azure Active Directory tenant ID
   string client_id = 2;                                        // Application (client) ID registered in Azure
   string client_secret = 3;                                    // Client secret for authenticating API requests
-  string api_scope = 4;                                        // Microsoft Graph API scope (e.g., https://graph.microsoft.com/.default)
 }

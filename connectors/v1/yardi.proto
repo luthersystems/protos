@@ -6,10 +6,11 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Connects to Yardi for property management, accounting, and real estate operations.
 message YardiConfig {
-  string base_url = 1;                                         // API base URL
-  string api_version = 2;                                      // API version (e.g., v1)
-  string client_id = 3;                                        // API client ID
-  string client_secret = 4 [(annotations.v1.sensitive) = true]; // API client secret
-  int32 request_timeout = 5;                                   // Optional: request timeout in seconds
+  string base_url = 1;                                         // Base URL for the Yardi API
+  string api_version = 2;                                      // API version to use (e.g., v1)
+  string client_id = 3;                                        // Client ID for authentication
+  string client_secret = 4 [(annotations.v1.sensitive) = true]; // Client secret for authentication
+  int32 request_timeout = 5;                                   // Optional: timeout for API requests, in seconds
 }

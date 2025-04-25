@@ -6,9 +6,10 @@ import "annotations/v1/sensitive.proto";
 
 option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
 
+// Connects to AWS Rekognition for image and video analysis, including object detection, facial recognition, and text extraction.
 message AWSRekognitionConfig {
-  string region = 1;                                            // AWS region
-  string role_arn = 2;                                          // IAM Role ARN
-  string access_key_id = 3 [(annotations.v1.sensitive) = true]; // AWS Access Key ID
-  string secret_key = 4 [(annotations.v1.sensitive) = true];    // AWS Secret Access Key
+  string region = 1;                                            // AWS region where Rekognition is deployed (e.g., us-west-2)
+  string role_arn = 2;                                          // IAM Role ARN to assume for API access
+  string access_key_id = 3 [(annotations.v1.sensitive) = true]; // Optional: AWS access key ID
+  string secret_key = 4 [(annotations.v1.sensitive) = true];    // Optional: AWS secret access key
 }
