@@ -271,8 +271,8 @@ message TestConnectionRequest {
 // Response message for connection testing
 message TestConnectionResponse {
   oneof result {
-    common.v1.Exception exception = 1; // 🔹 Exception details if an error occurred
-    ConnectionSuccess success = 2;     // 🔹 Successful test result
+    common.v1.Exception exception = 1; // Exception details if an error occurred
+    ConnectionSuccess success = 2;     // Successful test result
   }
 }
 

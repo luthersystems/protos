@@ -12,6 +12,8 @@ plugins:
       - paths=source_relative
       - Mprotoc-gen-openapiv2/options/openapiv2.proto=github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options
       - Mprotoc-gen-openapiv2/options/annotations.proto=github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options
+  - remote: buf.build/grpc-ecosystem/openapiv2:v2.20.0
+    out: .
   - remote: buf.build/grpc-ecosystem/gateway:v2.20.0
     out: .
     opt:
