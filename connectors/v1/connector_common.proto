@@ -173,8 +173,11 @@ enum Kind {
 
 // ConnectorConfig is used to create connections to systems.
 message ConnectorConfig {
+  // MSP is the name of the organisation that will run the connector.
   string msp = 1;
+  // Name is the name of the connector.
   string name = 2;
+  // Mock will use a test version of the connector.
   bool mock = 3;
   oneof config {
     CamundaInspectConfig camunda_inspect = 5;
