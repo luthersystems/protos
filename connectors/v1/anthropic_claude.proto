@@ -16,6 +16,6 @@ message AnthropicClaudeConfig {
     }
   };
 
-  string api_key = 1 [(annotations.v1.sensitive) = true];      // Anthropic API key for authenticating requests
-  string base_url = 2;                                         // Optional: custom base URL for the Claude API
+  string api_key = 1 [(annotations.v1.sensitive) = true];      // Anthropic API key for authenticating requests.
+  string base_url = 2;                                         // Optional: custom base URL for the Claude API.
 }

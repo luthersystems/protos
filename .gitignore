@@ -6,3 +6,5 @@ build
 
 # Ignore all generated protobuf Go files
 *.pb.go
+
+gen
