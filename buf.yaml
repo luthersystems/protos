@@ -3,6 +3,8 @@ deps:
   - buf.build/grpc-ecosystem/grpc-gateway
 modules:
   - name: buf.build/luthersystems/protos
+    excludes:
+      - connectors/
 lint:
   use:
     - STANDARD
