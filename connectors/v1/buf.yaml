@@ -1,8 +1,0 @@
-version: v2
-name: buf.build/luthersystems/connectors # optional if you plan to push to buf.build
-lint:
-  use:
-    - DEFAULT
-deps:
-  - buf.build/grpc-ecosystem/grpc-gateway
-  - buf.build/luthersystems/protos:7b22167a4f5b49d28c5ac5b8d9a77b1b

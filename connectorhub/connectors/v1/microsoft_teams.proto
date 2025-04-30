@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/luthersystems/protos/connectorhub/connectors/v1";
+
+// Interfaces with Microsoft Teams for messaging, collaboration, and workflow automation.
+message MicrosoftTeamsConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "Microsoft Teams"
+      description: "Interfaces with Microsoft Teams for messaging, collaboration, and workflow automation.\n@category: Workplace Apps"
+    }
+  };
+
+  string tenant_id = 1;                                        // Azure Active Directory tenant ID
+  string client_id = 2;                                        // Application (client) ID registered in Azure
+  string client_secret = 3;                                    // Client secret for authenticating API requests
+  string api_scope = 4;                                        // Microsoft Graph API scope (e.g., https://graph.microsoft.com/.default)
+}

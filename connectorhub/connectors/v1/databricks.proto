@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/luthersystems/protos/connectorhub/connectors/v1";
+
+// Connects to Databricks for AI-driven analytics, big data processing, and machine learning.
+message DatabricksConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "Databricks"
+      description: "Connects to Databricks for AI-driven analytics, big data processing, and machine learning.\n@category: Data & ETL"
+    }
+  };
+
+  string api_token = 1 [(annotations.v1.sensitive) = true];    // Personal access token for authenticating API requests
+  string host_url = 2;                                         // Host URL of the Databricks workspace (e.g., https://<region>.azuredatabricks.net)
+}

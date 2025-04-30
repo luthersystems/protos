@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/luthersystems/protos/connectorhub/connectors/v1";
+
+// Interfaces with Invoice Ninja for invoice generation, expense tracking, and client billing.
+message InvoiceNinjaConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "Invoice Ninja"
+      description: "Interfaces with Invoice Ninja for invoice generation, expense tracking, and client billing.\n@category: Business Apps"
+    }
+  };
+
+  string api_key = 1 [(annotations.v1.sensitive) = true];      // API key used for authenticating with the Invoice Ninja API
+  string base_url = 2;                                         // Base URL of the Invoice Ninja instance (e.g., https://app.invoiceninja.com)
+}

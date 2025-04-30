@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/luthersystems/protos/connectorhub/connectors/v1";
+
+// Configuration for sending messages using Twilio
+message TwilioConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "Twilio"
+      description: "Configuration for sending messages using Twilio, including SMS, voice, and other communication services.\n@category: Events & Messaging"
+    }
+  };
+
+  string account_sid = 1;                                        // Twilio Account SID
+  string auth_token = 2 [(annotations.v1.sensitive) = true];     // Twilio Auth Token (sensitive)
+  string default_phone_number = 3;                               // Optional default sender phone number
+}

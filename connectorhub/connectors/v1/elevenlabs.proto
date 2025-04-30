@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/luthersystems/protos/connectorhub/connectors/v1";
+
+// Interfaces with ElevenLabs' AI-powered text-to-speech API for high-quality voice synthesis and speech generation.
+message ElevenLabsConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "ElevenLabs"
+      description: "Interfaces with ElevenLabs' AI-powered text-to-speech API for high-quality voice synthesis and speech generation.\n@category: AI"
+    }
+  };
+
+  string api_key = 1 [(annotations.v1.sensitive) = true];      // API key from the ElevenLabs dashboard
+  string base_url = 2;                                         // Base API URL (e.g., https://api.elevenlabs.io)
+  string region = 3;                                           // Region for ElevenLabs services (e.g., us-west-1)
+  string voice_id = 4;                                         // Optional: specific Voice ID to use for synthesis
+  string output_format = 5;                                    // Desired audio output format (e.g., mp3, wav, ogg)
+  string text_prompt_language = 6;                             // Language of the text prompt (e.g., English, French)
+}

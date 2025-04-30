@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/luthersystems/protos/connectorhub/connectors/v1";
+
+// Integrates with Amazon Simple Queue Service (SQS) for scalable message queuing and decoupled architecture.
+message AWSSQSConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "AWS SQS"
+      description: "Integrates with Amazon Simple Queue Service (SQS) for scalable message queuing and decoupled architecture.\n@category: Events & Messaging"
+    }
+  };
+
+  string queue_url = 1;                                       // Full URL of the target SQS queue
+  string role_arn = 2;                                        // Optional: IAM Role ARN to assume for queue access
+  string access_key_id = 3 [(annotations.v1.sensitive) = true];  // Optional: AWS access key ID
+  string secret_access_key = 4 [(annotations.v1.sensitive) = true]; // Optional: AWS secret access key
+  bool use_tls = 5;                                           // Whether to use TLS for secure communication
+  int32 timeout = 6;                                          // Optional: timeout for requests, in seconds
+}

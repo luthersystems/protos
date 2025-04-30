@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/luthersystems/protos/connectorhub/connectors/v1";
+
+// Connects to Oracle Database for enterprise-grade relational database management and SQL-based querying.
+message OracleDBConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "Oracle DB"
+      description: "Connects to Oracle Database for enterprise-grade relational database management and SQL-based querying.\n@category: Data & ETL"
+    }
+  };
+
+  string host = 1;                                     // Hostname or IP of the Oracle database server
+  int32 port = 2;                                      // Port number, default is 1521
+  string service_name = 3;                             // Oracle service name (e.g., ORCL, XE)
+  string username = 4;                                 // Username for authentication
+  string password = 5 [(annotations.v1.sensitive) = true]; // Password for authentication
+  bool use_ssl = 6;                                    // Whether to use SSL/TLS for the connection
+}

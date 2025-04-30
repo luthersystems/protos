@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/luthersystems/protos/connectorhub/connectors/v1";
+
+// Configuration for sending messages using Slack Incoming Webhooks
+message SlackConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "Slack Webhook"
+      description: "Connects to Slack via webhooks to send automated messages and notifications.\n@category: Events & Messaging"
+    }
+  };
+
+  string webhook_url = 1 [(annotations.v1.sensitive) = true];  // Webhook URL for posting messages
+  string default_channel = 2;                                  // Optional: default Slack channel to send messages
+  string username = 3;                                         // Optional: sender name override
+}

@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/luthersystems/protos/connectorhub/connectors/v1";
+
+// Configuration for connecting to the internal PDF generation service
+message PDFServConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "PDF Service"
+      description: "Configuration for connecting to the internal PDF generation service.\n@category: Business Apps"
+    }
+  };
+
+  string connection = 1;                                       // Connection string or service endpoint for the PDF generation service
+}

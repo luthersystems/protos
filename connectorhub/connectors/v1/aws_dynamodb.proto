@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/luthersystems/protos/connectorhub/connectors/v1";
+
+// Connects to AWS DynamoDB for managed NoSQL database services with key-value and document-based storage.
+message AWSDynamoDBConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "AWS DynamoDB"
+      description: "Connects to AWS DynamoDB for managed NoSQL database services with key-value and document-based storage.\n@category: Data & ETL"
+    }
+  };
+
+  string region = 1;                                           // AWS region where the DynamoDB table is hosted (e.g., us-west-2)
+  string role_arn = 2;                                         // IAM Role ARN to assume for authentication
+  string access_key_id = 3 [(annotations.v1.sensitive) = true]; // Optional: AWS access key ID
+  string secret_access_key = 4 [(annotations.v1.sensitive) = true]; // Optional: AWS secret access key
+  string endpoint = 5;                                         // Optional: custom DynamoDB endpoint URL (e.g., for local or test environments)
+  string tls_setting = 6;                                      // Whether to use TLS for the connection (true/false)
+  int32 timeout = 7;                                           // Optional: timeout for API requests, in seconds
+}

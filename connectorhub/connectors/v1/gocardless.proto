@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/luthersystems/protos/connectorhub/connectors/v1";
+
+// Configuration for connecting to the GoCardless API
+message GoCardlessConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "GoCardless"
+      description: "Integrates with GoCardless for automated bank payments and direct debit transactions.\n@category: Business Apps"
+    }
+  };
+
+  string access_token = 1;                                     // Access token for authenticating with the GoCardless API
+  string base_url = 2;                                         // Base URL for GoCardless (e.g., https://api.gocardless.com)
+  string webhook_secret = 3 [(annotations.v1.sensitive) = true]; // Secret for validating incoming webhooks from GoCardless
+}

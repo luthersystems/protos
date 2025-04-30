@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/luthersystems/protos/connectorhub/connectors/v1";
+
+// Configuration for connecting to an SFTP server
+message SFTPConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "SFTP"
+      description: "Interfaces with SFTP (Secure File Transfer Protocol) for secure file transfers and batch data processing.\n@category: Data & ETL"
+    }
+  };
+
+  string host = 1;                                     // Hostname or IP of the SFTP server
+  int32 port = 2;                                      // Port number, default is 22
+  string username = 3;                                 // Username for authentication
+  string password = 4 [(annotations.v1.sensitive) = true];      // Password for authentication (if not using key)
+  string private_key = 5 [(annotations.v1.sensitive) = true];   // SSH private key for key-based auth
+  int32 timeout = 6;                                   // Optional connection timeout in seconds
+}

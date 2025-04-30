@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+
+option go_package = "github.com/luthersystems/protos/connectorhub/connectors/v1";
+
+// Interfaces with Amazon Simple Notification Service (SNS) for pub/sub messaging and real-time notifications.
+message AWSSNSConfig {
+  string topic_arn = 1;                                       // ARN of the target SNS topic
+  string role_arn = 2;                                        // Optional: IAM Role ARN to assume for publishing
+  string access_key_id = 3 [(annotations.v1.sensitive) = true];  // Optional: AWS access key ID
+  string secret_access_key = 4 [(annotations.v1.sensitive) = true]; // Optional: AWS secret access key
+  bool use_tls = 5;                                           // Whether to use TLS for secure communication
+  int32 timeout = 6;                                          // Optional: timeout for SNS operations, in seconds
+}

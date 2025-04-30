@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/luthersystems/protos/connectorhub/connectors/v1";
+
+// Configuration for connecting to Azure Event Hub
+message AzureEventHubConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "Azure Event Hub"
+      description: "Connects to Azure Event Hub for real-time event ingestion and streaming at cloud scale.\n@category: Events & Messaging"
+    }
+  };
+
+  string namespace = 1;                                      // Azure Event Hub namespace
+  string event_hub_name = 2;                                 // Name of the Event Hub
+  string access_key_name = 3;                                // Shared access key name
+  string access_key = 4 [(annotations.v1.sensitive) = true]; // Shared access key value
+  string consumer_group = 5;                                 // Consumer group (e.g., "$Default")
+  string partition_id = 6;                                   // Optional: partition ID for event streaming
+  bool use_tls = 7;                                          // Enable TLS for secure communication
+  int32 retention_period_days = 8;                           // Retention period in days
+}

@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/luthersystems/protos/connectorhub/connectors/v1";
+
+// Interfaces with ServiceNow for IT service management (ITSM), workflow automation, and enterprise service management.
+message ServiceNowConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "ServiceNow"
+      description: "Interfaces with ServiceNow for IT service management (ITSM), workflow automation, and enterprise service management.\n@category: Business Apps"
+    }
+  };
+
+  string instance_url = 1;                                     // URL of your ServiceNow instance (e.g., https://yourinstance.service-now.com)
+  string username = 2;                                         // Username for authenticating with the ServiceNow API
+  string password = 3 [(annotations.v1.sensitive) = true];     // Password for authentication
+}

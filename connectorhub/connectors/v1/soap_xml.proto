@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/luthersystems/protos/connectorhub/connectors/v1";
+
+// Enables integration with systems using SOAP-based web services and XML data formats for structured communication.
+message SOAPXMLConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "SOAP/XML"
+      description: "Enables integration with systems using SOAP-based web services and XML data formats for structured communication.\n@category: Customer connector technologies"
+    }
+  };
+
+  string wsdl_url = 1;                                         // URL to the WSDL document describing the SOAP service
+  string authentication_type = 2;                              // Authentication type: Basic, Token, or WS-Security
+  string username = 3;                                         // Username for Basic or WS-Security authentication
+  string password = 4 [(annotations.v1.sensitive) = true];     // Password for Basic or WS-Security authentication
+  string token = 5 [(annotations.v1.sensitive) = true];        // Optional: token for bearer token authentication
+  bool use_tls = 6;                                            // Whether to use TLS for secure communication
+  int32 timeout = 7;                                           // Timeout for SOAP requests, in seconds
+}

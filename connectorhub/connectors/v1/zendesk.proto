@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/luthersystems/protos/connectorhub/connectors/v1";
+
+// Connects to Zendesk for customer support, ticketing, and help desk automation.
+message ZendeskConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "Zendesk"
+      description: "Connects to Zendesk for customer support, ticketing, and help desk automation.\n@category: Workplace Apps"
+    }
+  };
+
+  string base_url = 1;                                         // Base URL of the Zendesk instance (e.g., https://yourcompany.zendesk.com)
+  string api_token = 2 [(annotations.v1.sensitive) = true];    // API token for authenticating API requests
+  string username = 3;                                         // Username associated with the Zendesk account
+}

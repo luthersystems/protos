@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/luthersystems/protos/connectorhub/connectors/v1";
+
+// Integrates with gRPC-based APIs for efficient, high-performance, and language-neutral communication.
+message GRPCConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "gRPC"
+      description: "Integrates with gRPC-based APIs for efficient, high-performance, and language-neutral communication.\n@category: Customer connector technologies"
+    }
+  };
+
+  string host = 1;                                             // gRPC server hostname or IP address
+  int32 port = 2;                                              // gRPC server port (default is 50051)
+  bool use_tls = 3;                                            // Whether to use TLS for secure communication
+  string authentication_type = 4;                              // Authentication type: Token, MTLS, or None
+  string api_token = 5 [(annotations.v1.sensitive) = true];    // Optional: bearer token for authentication
+  string certificate = 6;                                      // Optional: TLS certificate (PEM-encoded)
+  int32 timeout = 7;                                           // Optional: timeout for API requests, in seconds
+}

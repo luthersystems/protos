@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/luthersystems/protos/connectorhub/connectors/v1";
+
+// Enables sending and receiving emails through standard email protocols (SMTP, IMAP) or third-party email services.
+message EmailConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "Email"
+      description: "Enables sending and receiving emails through standard email protocols (SMTP) or Cloud email services (AWS).\n@category: Business Apps"
+    }
+  };
+
+  string smtp_server = 1;                                      // SMTP server hostname (e.g., smtp.sendgrid.net)
+  string from_address = 2;                                     // Sender email address (e.g., no-reply@example.com)
+  int32 port = 3;                                              // SMTP port (e.g., 587 for TLS, 465 for SSL)
+  string username = 4;                                         // Username for SMTP authentication
+  string password = 5 [(annotations.v1.sensitive) = true];     // Password for SMTP authentication
+  bool use_tls = 6;                                            // Enable TLS for secure SMTP connections
+  string aws_region = 7;                                       // If set, use AWS SES via IAM role in the specified region (only from_address is required)
+}

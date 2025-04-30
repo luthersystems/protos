@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/luthersystems/protos/connectorhub/connectors/v1";
+
+// Connects to OpenAI's ChatGPT API, enabling natural language processing, text generation, and conversational AI capabilities.
+message OpenAIChatGPTConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "OpenAI ChatGPT"
+      description: "Connects to OpenAI's ChatGPT API, enabling natural language processing, text generation, and conversational AI capabilities.\n@category: AI"
+    }
+  };
+
+  string api_key = 1 [(annotations.v1.sensitive) = true];      // OpenAI API key for authentication
+  string organization_id = 2;                                  // Optional: OpenAI organization ID
+  string base_url = 3;                                         // Optional: custom base URL (e.g., for proxying or Azure-hosted endpoints)
+}

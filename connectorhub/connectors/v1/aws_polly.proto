@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/luthersystems/protos/connectorhub/connectors/v1";
+
+// Connects to AWS Polly to convert text into natural-sounding speech using deep learning-based text-to-speech synthesis.
+message AWSPollyConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "AWS Polly"
+      description: "Integrates with AWS Polly to convert text into natural-sounding speech using deep learning-based text-to-speech synthesis.\n@category: AI"
+    }
+  };
+
+  string region = 1;                                            // AWS region where Polly is deployed (e.g., us-east-1)
+  string role_arn = 2;                                          // IAM Role ARN to assume for accessing Polly
+  string access_key_id = 3 [(annotations.v1.sensitive) = true]; // Optional: AWS access key ID
+  string secret_key = 4 [(annotations.v1.sensitive) = true];    // Optional: AWS secret access key
+}

@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/luthersystems/protos/connectorhub/connectors/v1";
+
+// Connects to Snowflake for cloud-based data warehousing, analytics, and business intelligence.
+message SnowflakeConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "Snowflake"
+      description: "Connects to Snowflake for cloud-based data warehousing, analytics, and business intelligence.\n@category: Data & ETL"
+    }
+  };
+
+  string account_name = 1;                                     // Snowflake account identifier (e.g., xyz123.region.snowflakecomputing.com)
+  string database_name = 2;                                    // Name of the target database
+  string warehouse_name = 3;                                   // Name of the virtual warehouse to use
+  string username = 4;                                         // Username for authentication
+  string password = 5 [(annotations.v1.sensitive) = true];     // Password for authentication
+  string schema_name = 6;                                      // Schema name within the database
+  string role = 7;                                             // Optional: role to assume for session execution
+  bool use_keep_alive = 8;                                     // Whether to enable client session keep-alive
+}
+

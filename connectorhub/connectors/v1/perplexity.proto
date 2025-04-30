@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/luthersystems/protos/connectorhub/connectors/v1";
+
+// Interfaces with Perplexity AI, a research-driven AI assistant that provides contextual and sourced responses to queries.
+message PerplexityConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "Perplexity"
+      description: "Interfaces with Perplexity AI, a research-driven AI assistant that provides contextual and sourced responses to queries.\n@category: AI"
+    }
+  };
+
+  string api_key = 1 [(annotations.v1.sensitive) = true];      // API key for authenticating with the Perplexity API
+  string query_endpoint = 2;                                   // Endpoint for sending queries to Perplexity
+  string default_search = 3;                                   // Default search type (e.g., web, academic)
+  int32 request_timeout = 4;                                   // Timeout for query requests, in seconds
+  bool include_sources = 5;                                    // Whether to include sources in the AI's response
+}

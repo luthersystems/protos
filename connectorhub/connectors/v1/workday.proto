@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/luthersystems/protos/connectorhub/connectors/v1";
+
+// Connects to Workday for human capital management (HCM), finance, and enterprise resource planning (ERP).
+message WorkdayConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "Workday"
+      description: "Connects to Workday for human capital management (HCM), finance, and enterprise resource planning (ERP).\n@category: Workplace Apps"
+    }
+  };
+
+  string tenant_name = 1;                                      // Workday tenant name (e.g., mycompany_tenant)
+  string host_url = 2;                                         // Host URL of the Workday service (e.g., https://wd5-services.workday.com)
+  string api_username = 3;                                     // Username for authenticating with the Workday API
+  string api_password = 4 [(annotations.v1.sensitive) = true]; // Password for API authentication
+  string web_service_endpoint = 5;                             // Web service endpoint path (e.g., Human_Resources/v35.0)
+}

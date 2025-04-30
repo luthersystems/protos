@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/luthersystems/protos/connectorhub/connectors/v1";
+
+// Connects to SAP S/4HANA for enterprise resource planning (ERP), financials, and business operations management.
+message SAPS4HANAConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "SAP S/4HANA"
+      description: "Connects to SAP S/4HANA for enterprise resource planning (ERP), financials, and business operations management.\n@category: Business Apps"
+    }
+  };
+
+  string base_url = 1;                                         // Base URL of the SAP S/4HANA system
+  string client_id = 2;                                        // OAuth2 client ID
+  string client_secret = 3 [(annotations.v1.sensitive) = true]; // OAuth2 client secret
+  string tenant_id = 4;                                        // Tenant ID (used for multi-tenant environments)
+  string authentication_url = 5;                               // URL used to obtain OAuth2 tokens
+}

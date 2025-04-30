@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/luthersystems/protos/connectorhub/connectors/v1";
+
+// Interfaces with the UK's Office for National Statistics (ONS) for accessing economic, demographic, and business data.
+message ONSConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "ONS"
+      description: "Interfaces with the UK's Office for National Statistics (ONS) for accessing economic, demographic, and business data.\n@category: Business Apps"
+    }
+  };
+
+  string dataset_id = 1;                                      // Dataset ID to query (e.g., cpi01)
+  string response_format = 2;                                 // Desired response format: json, csv, or xlsx
+  int32 timeout = 3;                                          // Request timeout in seconds
+}

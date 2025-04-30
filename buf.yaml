@@ -4,7 +4,7 @@ deps:
 modules:
   - name: buf.build/luthersystems/protos
     excludes:
-      - connectors/
+      - connectorhub/
 lint:
   use:
     - STANDARD

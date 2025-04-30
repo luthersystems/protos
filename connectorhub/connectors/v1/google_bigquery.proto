@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+import "annotations/v1/sensitive.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/luthersystems/protos/connectorhub/connectors/v1";
+
+// Interfaces with Google BigQuery for serverless, scalable data analytics and querying.
+message GoogleBigQueryConfig {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "Google BigQuery"
+      description: "Interfaces with Google BigQuery for serverless, scalable data analytics and querying.\n@category: Data & ETL"
+    }
+  };
+
+  string project_id = 1;                                       // Google Cloud project ID
+  string dataset_name = 2;                                     // BigQuery dataset name
+  string table_name = 3;                                       // BigQuery table name
+  string service_account = 4;                                  // Service account email for authentication
+  string private_key = 5 [(annotations.v1.sensitive) = true];  // Private key for the service account
+  int32 query_timeout = 6;                                     // Timeout for queries, in seconds
+}
