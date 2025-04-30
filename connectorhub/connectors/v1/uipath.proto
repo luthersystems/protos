@@ -5,7 +5,7 @@ package connectors.v1;
 import "annotations/v1/sensitive.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
-option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+option go_package = "github.com/luthersystems/protos/connectorhub/connectors/v1";
 
 // Connects to UiPath for robotic process automation (RPA) to automate repetitive tasks and workflows.
 message UiPathConfig {

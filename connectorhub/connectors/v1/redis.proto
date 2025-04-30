@@ -5,7 +5,7 @@ package connectors.v1;
 import "annotations/v1/sensitive.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
-option go_package = "buf.build/gen/go/luthersystems/protos/protocolbuffers/go/connectors/v1";
+option go_package = "github.com/luthersystems/protos/connectorhub/connectors/v1";
 
 // Integrates with Redis for high-performance caching, session storage, and real-time data processing.
 message RedisConfig {
