@@ -1,0 +1,7 @@
+version: v2
+lint:
+  use:
+    - STANDARD
+deps:
+  - buf.build/grpc-ecosystem/grpc-gateway
+  - buf.build/luthersystems/protos
