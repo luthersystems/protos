@@ -14,6 +14,11 @@ import "common/v1/exception.proto";
 message GetHealthCheckRequest {
   // Check only the http service
   bool http_only = 1;
+  // Also write one heartbeat transaction and read it back, to prove that
+  // the network can endorse, order and commit. Off unless the caller
+  // sets it, and a service refuses it for a caller it does not allow
+  // (luthersystems/substrate#1037).
+  bool write = 2;
 }
 
 // Health status of services.
