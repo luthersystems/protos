@@ -10,8 +10,9 @@
 //
 // The blank imports below are the non-standard packages that the generated
 // code in connectors/v1 imports, so tidy keeps exactly those requires. When
-// a connector proto starts to import a new package, add it here;
-// scripts/connectorhub-check.sh fails on a go.mod that tidy would change.
+// a connector proto starts to import a package from a new Go module, add it
+// here. scripts/connectorhub-check.sh generates the code and fails when it
+// needs a module that go.mod does not require.
 //
 // The tools build tag keeps this file out of every normal build. go mod tidy
 // reads files of all build tags, so it still sees the imports.
