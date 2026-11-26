@@ -47,13 +47,35 @@ jobs:
     env:
       SKIP_BUF_BREAKING: true
 
+  # connectorhub/ is outside the root buf module, so the build job above
+  # never compiles it. scripts/connectorhub-check.sh builds its protos
+  # against buf.lock and checks that go mod tidy (which Dependabot runs)
+  # keeps its requires (#49).
+  connectorhub:
+    needs: changes
+    if: needs.changes.outputs.code != 'false'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: bufbuild/buf-setup-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-go@v7
+        with:
+          go-version-file: connectorhub/go.mod
+          cache: false
+      - run: ./scripts/connectorhub-check.sh
+
   # The one check main's ruleset requires for this workflow. always(), so
   # the gate reports on every run: a gate that is skipped (as !cancelled()
   # would leave it on a cancelled run) counts as passing for a required check.
   ci-all:
     name: CI (all required checks)
     if: always()
-    needs: [changes, build]
+    needs: [changes, build, connectorhub]
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
